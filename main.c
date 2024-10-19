@@ -2,8 +2,5 @@
 
 int main() {
     printf("Hello, World!\n");
-    return 0; //huygyghy
-    //gfhdgiufsiugfshdui
-    //ysfudihfusidhfsd
-    //gufghfhgfhg
+    return 0;
 }

@@ -3,4 +3,6 @@ project(projet_info_je_vais_baiser_austin_ C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(projet_info_je_vais_baiser_austin_ main.c)
+add_executable(projet_info_je_vais_baiser_austin_ main.c
+        menu.c
+        plateau.c)
