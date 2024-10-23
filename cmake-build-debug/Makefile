@@ -152,6 +152,54 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.s
 .PHONY : main.c.s
 
+menu.obj: menu.c.obj
+.PHONY : menu.obj
+
+# target to build an object file
+menu.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj
+.PHONY : menu.c.obj
+
+menu.i: menu.c.i
+.PHONY : menu.i
+
+# target to preprocess a source file
+menu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.i
+.PHONY : menu.c.i
+
+menu.s: menu.c.s
+.PHONY : menu.s
+
+# target to generate assembly for a file
+menu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.s
+.PHONY : menu.c.s
+
+plateau.obj: plateau.c.obj
+.PHONY : plateau.obj
+
+# target to build an object file
+plateau.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj
+.PHONY : plateau.c.obj
+
+plateau.i: plateau.c.i
+.PHONY : plateau.i
+
+# target to preprocess a source file
+plateau.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.i
+.PHONY : plateau.c.i
+
+plateau.s: plateau.c.s
+.PHONY : plateau.s
+
+# target to generate assembly for a file
+plateau.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.s
+.PHONY : plateau.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +212,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... menu.obj
+	@echo ... menu.i
+	@echo ... menu.s
+	@echo ... plateau.obj
+	@echo ... plateau.i
+	@echo ... plateau.s
 .PHONY : help
 
 

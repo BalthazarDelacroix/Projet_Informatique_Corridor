@@ -82,19 +82,51 @@ CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\main.c -o CMakeFiles\projet_info_je_vais_baiser_austin_.dir\main.c.s
 
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/flags.make
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj: C:/Users/wanga/Downloads/projet-info-je-vais-baiser-austin-/menu.c
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj -MF CMakeFiles\projet_info_je_vais_baiser_austin_.dir\menu.c.obj.d -o CMakeFiles\projet_info_je_vais_baiser_austin_.dir\menu.c.obj -c C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\menu.c
+
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\menu.c > CMakeFiles\projet_info_je_vais_baiser_austin_.dir\menu.c.i
+
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\menu.c -o CMakeFiles\projet_info_je_vais_baiser_austin_.dir\menu.c.s
+
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/flags.make
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj: C:/Users/wanga/Downloads/projet-info-je-vais-baiser-austin-/plateau.c
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj -MF CMakeFiles\projet_info_je_vais_baiser_austin_.dir\plateau.c.obj.d -o CMakeFiles\projet_info_je_vais_baiser_austin_.dir\plateau.c.obj -c C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\plateau.c
+
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\plateau.c > CMakeFiles\projet_info_je_vais_baiser_austin_.dir\plateau.c.i
+
+CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\plateau.c -o CMakeFiles\projet_info_je_vais_baiser_austin_.dir\plateau.c.s
+
 # Object files for target projet_info_je_vais_baiser_austin_
 projet_info_je_vais_baiser_austin__OBJECTS = \
-"CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj"
+"CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj" \
+"CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj" \
+"CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj"
 
 # External object files for target projet_info_je_vais_baiser_austin_
 projet_info_je_vais_baiser_austin__EXTERNAL_OBJECTS =
 
 projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj
+projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj
+projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj
 projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/build.make
 projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/linkLibs.rsp
 projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/objects1.rsp
 projet_info_je_vais_baiser_austin_.exe: CMakeFiles/projet_info_je_vais_baiser_austin_.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable projet_info_je_vais_baiser_austin_.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable projet_info_je_vais_baiser_austin_.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\projet_info_je_vais_baiser_austin_.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
