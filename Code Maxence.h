@@ -1,3 +1,6 @@
+#ifndef CODE_MAXENCE_H
+#define CODE_MAXENCE_H
+
 #include <stdio.h>
 
 #define TAILLE 9
@@ -80,6 +83,4 @@ int main() {
 }
 */
 
-
-
-
+#endif
