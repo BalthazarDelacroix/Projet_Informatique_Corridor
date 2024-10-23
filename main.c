@@ -1,11 +1,15 @@
 #include "Code Maxence.h"
 
 int main() {
+    afficherMenu();
 
     char plateau[TAILLE][TAILLE];
 
+
     // Initialisation du plateau
     initPlateau(plateau);
+
+
 
     // Affichage du plateau vide
     afficherPlateau(plateau);
@@ -22,6 +26,5 @@ int main() {
         placerMur(plateau, x, y, typeMur);
         afficherPlateau(plateau);  // Réafficher le plateau après la pose d'un mur
     }
-
     return 0;
 }
