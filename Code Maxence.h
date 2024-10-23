@@ -9,4 +9,5 @@
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);
 void placerMur(char plateau[TAILLE][TAILLE], int x, int y, char typeMur);
+
 #endif
