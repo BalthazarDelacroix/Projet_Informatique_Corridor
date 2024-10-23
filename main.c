@@ -22,6 +22,5 @@ int main() {
         placerMur(plateau, x, y, typeMur);
         afficherPlateau(plateau);  // Réafficher le plateau après la pose d'un mur
     }
-
     return 0;
 }
