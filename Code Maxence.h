@@ -1,6 +1,8 @@
 #ifndef CODE_MAXENCE_H
 #define CODE_MAXENCE_H
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 #define MAX_JOUEURS 4
 #define TAILLE_NOM 50
 #define TAILLE 9

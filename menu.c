@@ -1,13 +1,4 @@
-
-
 #include "Code Maxence.h"
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-
-#include <stdio.h>
-
 
 // Fonction pour afficher le menu et gérer les choix
 void afficherMenu() {
