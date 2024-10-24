@@ -3,7 +3,7 @@
 #include "Code Maxence.h"
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 
 
 #include <stdio.h>
@@ -148,14 +148,6 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
 
         // 5. Choix entre Humain ou IA
         choisirHumainOuIA(joueurs, i);
-        for (int j = 0; j < *nbJoueurs; j++) {
-            joueurs[j].score = 0;  // Initialiser le score a 0 pour chaque joueur
-            if (*nbJoueurs == 2) {
-                joueurs[j].nombreBarrières = 10;  // 10 barrieres pour chaque joueur si 2 joueurs
-            } else if (*nbJoueurs == 4) {
-                joueurs[j].nombreBarrières = 5;  // 5 barrieres pour chaque joueur si 4 joueurs
-            }
-        }
     }
 
     // Affichage de la configuration finale des joueurs
