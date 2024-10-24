@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/wanga/OneDrive/Bureau/ECE_ING_1/Informatique/Projets _ Exercices/Projet/Quoridor/projet-info-je-vais-baiser-austin-
+# Install script for directory: C:/Users/wanga/Downloads/projet-info-je-vais-baiser-austin-
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/wanga/OneDrive/Bureau/ECE_ING_1/Informatique/Projets _ Exercices/Projet/Quoridor/projet-info-je-vais-baiser-austin-/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/wanga/Downloads/projet-info-je-vais-baiser-austin-/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,6 +1,8 @@
 #ifndef CODE_MAXENCE_H
 #define CODE_MAXENCE_H
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 #define MAX_JOUEURS 4
 #define TAILLE_NOM 50
 #define TAILLE 9
@@ -11,7 +13,7 @@ typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
     char pion;            // Pion du joueur
     int estIA;
-    int nombreBarrières; // Nombre de barrieres pour chaque joueur
+    int nombreBarrieres; // Nombre de barrieres pour chaque joueur
     int score;  // Score du joueur
 } Joueur;
 

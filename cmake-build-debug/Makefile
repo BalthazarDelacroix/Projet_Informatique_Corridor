@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\wanga\OneDrive\Bureau\ECE_ING_1\Informatique\Projets _ Exercices\Projet\Quoridor\projet-info-je-vais-baiser-austin-"
+CMAKE_SOURCE_DIR = C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\wanga\OneDrive\Bureau\ECE_ING_1\Informatique\Projets _ Exercices\Projet\Quoridor\projet-info-je-vais-baiser-austin-\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\wanga\OneDrive\Bureau\ECE_ING_1\Informatique\Projets _ Exercices\Projet\Quoridor\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles" "C:\Users\wanga\OneDrive\Bureau\ECE_ING_1\Informatique\Projets _ Exercices\Projet\Quoridor\projet-info-je-vais-baiser-austin-\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\wanga\OneDrive\Bureau\ECE_ING_1\Informatique\Projets _ Exercices\Projet\Quoridor\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\wanga\Downloads\projet-info-je-vais-baiser-austin-\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -127,6 +127,30 @@ projet_info_je_vais_baiser_austin_: cmake_check_build_system
 projet_info_je_vais_baiser_austin_/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/build
 .PHONY : projet_info_je_vais_baiser_austin_/fast
+
+Logique_IA.obj: Logique_IA.c.obj
+.PHONY : Logique_IA.obj
+
+# target to build an object file
+Logique_IA.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.obj
+.PHONY : Logique_IA.c.obj
+
+Logique_IA.i: Logique_IA.c.i
+.PHONY : Logique_IA.i
+
+# target to preprocess a source file
+Logique_IA.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.i
+.PHONY : Logique_IA.c.i
+
+Logique_IA.s: Logique_IA.c.s
+.PHONY : Logique_IA.s
+
+# target to generate assembly for a file
+Logique_IA.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.s
+.PHONY : Logique_IA.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... projet_info_je_vais_baiser_austin_
+	@echo ... Logique_IA.obj
+	@echo ... Logique_IA.i
+	@echo ... Logique_IA.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
