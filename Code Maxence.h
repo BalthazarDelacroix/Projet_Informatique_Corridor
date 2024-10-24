@@ -10,7 +10,9 @@
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
     char pion;            // Pion du joueur
-    int estIA;            // 0 = Humain, 1 = IA
+    int estIA;
+    int nombreBarrières; // Nombre de barrieres pour chaque joueur
+    int score;  // Score du joueur
 } Joueur;
 
 void initPlateau(char plateau[TAILLE][TAILLE]);
