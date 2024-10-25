@@ -26,5 +26,6 @@ void choisirHumainOuIA(Joueur joueurs[], int i);
 void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i);
 void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i);
 int saisirNombreDeJoueurs();
+void AfficherAide();
 
 #endif

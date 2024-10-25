@@ -51,7 +51,7 @@ void afficherMenu() {
             break;
         case 3:
             printf("Vous avez choisi : Afficher l'aide\n");
-            // Appeler ici la fonction qui affiche l'aide
+            AfficherAide();
             break;
         case 4:
             printf("Vous avez choisi : Afficher les scores des joueurs\n");
@@ -187,4 +187,15 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
                joueurs[i].pion,
                joueurs[i].estIA ? "IA" : "Humain");
     }
+}
+
+void AfficherAide(){
+    printf("- Chaque joueur est soit humain soit une IA de l’ordinateur, à choisir avant de lancer la partie.\n"
+           "- Plateau de 9 cases par ligne et 9 cases par colonne. Entre les lignes et entre les colonnes il y"
+           " a un emplacement prévu pour planter les murs du corridor (ou Quoridor) !\n"
+           "- 20 barrières ( (10 barrières par joueur pour 2 joueurs ou 5 barrières pour 4 joueurs).\n"
+           "- Chaque barrière a une longueur de 2 cases et se positionnera entre deux lignes ou deux\n"
+           "colonnes.\n"
+           "- 1 zone de stockage par joueur des barrières en début de partie (inventaire)\n"
+           "- ♟Un pion par joueur avec un jeton à choisir parmi un caractère de son choix");
 }
