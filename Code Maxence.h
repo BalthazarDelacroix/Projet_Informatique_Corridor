@@ -11,12 +11,12 @@
 
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
-    char pion;            // Pion du joueur
+    unsigned char pion;            // Pion du joueur
     int estIA;
     int nombreBarrieres; // Nombre de barrieres pour chaque joueur
     int score;  // Score du joueur
 } Joueur;
-
+void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nbJoueurs);
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);
 void placerMur(char plateau[TAILLE][TAILLE], int x, int y, char typeMur);
@@ -26,5 +26,6 @@ void choisirHumainOuIA(Joueur joueurs[], int i);
 void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i);
 void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i);
 int saisirNombreDeJoueurs();
+void AfficherAide();
 
 #endif

@@ -8,11 +8,15 @@ int main() {
 
     // Initialisation du plateau
     initPlateau(plateau);
+    Joueur joueurs[MAX_JOUEURS];
 
-
-
+    // Placer les pions sur le plateau
+    placerPionsSurPlateau(plateau, joueurs, saisirNombreDeJoueurs());
     // Affichage du plateau vide
     afficherPlateau(plateau);
+
+
+
 
     // Pose des murs (exemple d'interaction)
     int x, y;

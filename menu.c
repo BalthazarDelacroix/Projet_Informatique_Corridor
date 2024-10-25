@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 
 #include <stdio.h>
@@ -51,7 +52,7 @@ void afficherMenu() {
             break;
         case 3:
             printf("Vous avez choisi : Afficher l'aide\n");
-            // Appeler ici la fonction qui affiche l'aide
+            AfficherAide();
             break;
         case 4:
             printf("Vous avez choisi : Afficher les scores des joueurs\n");
@@ -114,32 +115,46 @@ void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
     strcpy(joueurs[i].nom, nom);  // Copier le nom dans la structure du joueur
 }
 void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
-    char pion;
+    unsigned char pion;
     int pionUnique;
+    char temp[4];
+
     do {
         pionUnique = 1;
-        char temp[2];
-        printf("Joueur %d, choisissez un pion (caractere unique) : \n", i + 1);
+        printf("Joueur %d, choisissez un pion (code hexadecimal unique) : \n", i + 1);
 
-        // Lire une ligne pour vérifier s'il n'y a qu'un caractère
-        if (scanf("%1s", temp) != 1 || getchar() != '\n') {
-            printf("Erreur: Veuillez entrer un seul caractère pour le pion.\n");
+        if (scanf("%4s", temp) != 1 || getchar() != '\n') {
+            printf("Erreur: Veuillez entrer un code hexadecimal valide (ex: 41 pour 'A').\n");
             pionUnique = 0;
-            while (getchar() != '\n'); // Nettoyer le tampon
+            while (getchar() != '\n');
             continue;
         }
-        pion = temp[0]; // Assigner le pion s'il y a bien un seul caractère
 
-        // Vérification de l'unicité du pion
+        int code = (int)strtol(temp, NULL, 16);
+
+        if (code < 0x00 || code > 0xFF) {
+            printf("Erreur: Veuillez entrer un code hexadecimal valide pour un caractère imprimable (entre 20 et FE).\n");
+            pionUnique = 0;
+            continue;
+        }
+
+        pion = (unsigned char)code;
+
         for (int k = 0; k < i; k++) {
             if (joueurs[k].pion == pion) {
-                pionUnique = 0;  // Pion déjà pris
+                pionUnique = 0;
                 printf("Erreur: Ce pion est deja utilise par un autre joueur.\n");
                 break;
             }
         }
     } while (pionUnique == 0);
+
+    joueurs[i].pion = pion;
+
+
+    printf("Pion selectionne: %c\n", pion);  // Affichage du pion choisi
 }
+
 
 void choisirHumainOuIA(Joueur joueurs[], int i) {
     char buffer[10]; // Un buffer assez grand pour contenir l'entrée
@@ -187,4 +202,15 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
                joueurs[i].pion,
                joueurs[i].estIA ? "IA" : "Humain");
     }
+}
+
+void AfficherAide(){
+    printf("- Chaque joueur est soit humain soit une IA, a choisir avant de lancer la partie.\n"
+           "- Plateau de 9 cases par ligne et 9 cases par colonne. Entre les lignes et entre les colonnes il y"
+           " a un emplacement prevu pour planter les murs du corridor (ou Quoridor) !\n"
+           "- 20 barrieres ( (10 barrieres par joueur pour 2 joueurs ou 5 barrieres pour 4 joueurs).\n"
+           "- Chaque barriere a une longueur de 2 cases et se positionnera entre deux lignes ou deux\n"
+           "colonnes.\n"
+           "- 1 zone de stockage par joueur des barrieres en début de partie (inventaire)\n"
+           "- ♟Un pion par joueur avec un jeton a choisir parmi un caractere de son choix");
 }
