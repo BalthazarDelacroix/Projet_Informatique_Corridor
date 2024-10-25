@@ -99,32 +99,38 @@ void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
 
     strcpy(joueurs[i].nom, nom);  // Copier le nom dans la structure du joueur
 }
-int saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
+void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
     char pion;
     int pionUnique;
     do {
+        pionUnique = 1;
+        char temp[2];
         printf("Joueur %d, choisissez un pion (caractere unique) : \n", i + 1);
-        scanf(" %c", &pion);// Espace avant %c pour ignorer les caractères résiduels
+
+        // Lire une ligne pour vérifier s'il n'y a qu'un caractère
+        if (scanf("%1s", temp) != 1 || getchar() != '\n') {
+            printf("Erreur: Veuillez entrer un seul caractère pour le pion.\n");
+            pionUnique = 0;
+            while (getchar() != '\n'); // Nettoyer le tampon
+            continue;
+        }
+        pion = temp[0]; // Assigner le pion s'il y a bien un seul caractère
 
         // Vérification de l'unicité du pion
-        for (int j = 0; j < i; j++) {
-            if (joueurs[j].pion == pion) {
+        for (int k = 0; k < i; k++) {
+            if (joueurs[k].pion == pion) {
                 pionUnique = 0;  // Pion déjà pris
                 printf("Erreur: Ce pion est deja utilise par un autre joueur.\n");
                 break;
             }
         }
-    } while (pionUnique == 0);  // Répète tant que le pion n'est pas unique
-
-    joueurs[i].pion = pion;  // Attribue le pion au joueur
-    return joueurs[i].pion;
+    } while (pionUnique == 0);
 }
 
 
-int choisirHumainOuIA(Joueur joueurs[], int i) {
+void choisirHumainOuIA(Joueur joueurs[], int i) {
     int choix;
     do {
-
         printf("Le joueur %s est-il un humain (0) ou une IA (1) ?\n ", joueurs[i].nom);
         scanf(" %d", &choix);
 
@@ -132,31 +138,20 @@ int choisirHumainOuIA(Joueur joueurs[], int i) {
             printf("Erreur: Vous devez entrer 0 pour Humain ou 1 pour IA.\n");
         }
     } while (choix != 0 && choix != 1);
-
-    return joueurs[i].estIA = choix;  // Attribuer le type (Humain ou IA) au joueur
 }
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
     // 1. Saisie et validation du nombre de joueurs
     *nbJoueurs = saisirNombreDeJoueurs();
-    int p,a;
     // 2. Boucle pour configurer chaque joueur
     for (int i = 0; i < *nbJoueurs; i++) {
         // 3. Saisie et validation du nom
         saisirNomUnique(joueurs, *nbJoueurs, i);
-        // 4. Choix entre Humain ou IA
-        do {
-            choisirHumainOuIA(joueurs, i);
-            a = choisirHumainOuIA(joueurs, i);
-        } while (a != 0 && a != 1);
+        // .4 Saisie et validation du pion
 
-        // 5. Saisie et validation du pion
-        do {
+        saisirPionUnique(joueurs, *nbJoueurs, i);
 
-            saisirPionUnique(joueurs, *nbJoueurs, i);
-            p = saisirPionUnique(joueurs, *nbJoueurs, i);
-            } while (p>255 && p<0);
-
-
+        // 5. Choix entre Humain ou IA
+        choisirHumainOuIA(joueurs, i);
     }
 
     // Affichage de la configuration finale des joueurs
