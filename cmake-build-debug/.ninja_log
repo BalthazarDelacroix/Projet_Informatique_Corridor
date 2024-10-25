@@ -1,14 +1,6 @@
 # ninja log v5
-7	127	7514011441133829	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj	b8b7ae262d27b86c
-0	140	7514011441296150	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj	b3ccc3bf8fdb658b
-11	150	7514011441385849	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj	5c7024ce6adfa375
-150	300	7514011442802621	projet_info_je_vais_baiser_austin_.exe	3eacca4dd8254dbc
-44	1782	7514982876896831	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.obj	111cbcfdd019af4f
-4	1796	7514982876957714	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj	b3ccc3bf8fdb658b
-32	1799	7514982877060540	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj	5c7024ce6adfa375
 20	1805	7514982877011806	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.obj	b8b7ae262d27b86c
-1806	2965	7514982888629606	projet_info_je_vais_baiser_austin_.exe	5f44970828668fad
-2	263	7514983801849503	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj	b3ccc3bf8fdb658b
-264	619	7514983805289242	projet_info_je_vais_baiser_austin_.exe	5f44970828668fad
 3	285	7514984279140422	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj	b3ccc3bf8fdb658b
+32	1799	7514982877060540	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/plateau.c.obj	5c7024ce6adfa375
 286	629	7514984282298396	projet_info_je_vais_baiser_austin_.exe	5f44970828668fad
+44	1782	7514982876896831	CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.obj	111cbcfdd019af4f
