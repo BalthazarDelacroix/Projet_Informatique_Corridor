@@ -12,52 +12,57 @@
 // Fonction pour afficher le menu et gérer les choix
 void afficherMenu() {
     int choix;
+    char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 
     do {
         // Affichage du menu
-        printf("\n MENU DU JEU \n");
+        printf("\n\t MENU DU JEU \n");
         printf("1. Lancer une nouvelle partie\n");
         printf("2. Reprendre une partie sauvegardee\n");
         printf("3. Afficher l'aide\n");
         printf("4. Afficher les scores des joueurs\n");
         printf("5. Quitter\n");
         printf("Veuillez choisir une option (1-5) : ");
-        scanf("%d", &choix);
-        // Verification de la validite du choix
-        if (choix <= 0 || choix > 5) {
-            printf("Erreur: Veuillez entrer un nombre entre 1 et 5.\n");
+
+        // Utilisation de fgets pour capturer l'entrée complète
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            // Tentative de conversion de l'entrée en entier
+            if (sscanf(buffer, "%d", &choix) != 1 || choix < 1 || choix > 5) {
+                printf("Erreur: Veuillez entrer un nombre entre 1 et 5.\n");
+                choix = -1;  // Réinitialiser le choix si c'est une entrée invalide
+            }
         }
 
-    } while (choix <= 0 || choix > 5);  // Repete tant que l'entree est invalide
+    } while (choix < 1 || choix > 5);  // Répète tant que l'entrée est invalide
 
     // Gestion des choix avec switch-case
     switch (choix) {
         case 1:
             printf("Vous avez choisi : Lancer une nouvelle partie\n");
-        // Appeler ici la fonction qui démarre une nouvelle partie
+            // Appeler ici la fonction qui démarre une nouvelle partie
             Joueur joueurs[MAX_JOUEURS];  // Déclaration du tableau de joueurs
             int nbJoueurs;                // Variable pour stocker le nombre de joueurs
             // Appel de la fonction configurerJoueurs avec les parametres requis
             configurerJoueurs(joueurs, &nbJoueurs);
-        break;
+            break;
         case 2:
             printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
-        // Appeler ici la fonction qui charge une partie sauvegardee
-        break;
+            // Appeler ici la fonction qui charge une partie sauvegardee
+            break;
         case 3:
             printf("Vous avez choisi : Afficher l'aide\n");
-        // Appeler ici la fonction qui affiche l'aide
-        break;
+            // Appeler ici la fonction qui affiche l'aide
+            break;
         case 4:
             printf("Vous avez choisi : Afficher les scores des joueurs\n");
-        // Appeler ici la fonction qui affiche les scores
-        break;
+            // Appeler ici la fonction qui affiche les scores
+            break;
         case 5:
             printf("Vous avez choisi : Quitter le jeu\n");
-        break;
+            break;
         default:
             printf("Erreur: Choix non reconnu.\n");
-        break;
+            break;
     }
 }
 
