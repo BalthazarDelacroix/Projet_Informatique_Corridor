@@ -127,18 +127,28 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
     } while (pionUnique == 0);
 }
 
-
 void choisirHumainOuIA(Joueur joueurs[], int i) {
+    char buffer[10]; // Un buffer assez grand pour contenir l'entrée
     int choix;
-    do {
-        printf("Le joueur %s est-il un humain (0) ou une IA (1) ?\n ", joueurs[i].nom);
-        scanf(" %d", &choix);
 
-        if (choix != 0 && choix != 1) {
-            printf("Erreur: Vous devez entrer 0 pour Humain ou 1 pour IA.\n");
+    do {
+        printf("Le joueur %s est-il un humain (0) ou une IA (1) ?\n", joueurs[i].nom);
+        // Utilisation de fgets pour capturer l'entrée en entier
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            // Tentative de conversion de l'entrée en entier
+            if (sscanf(buffer, "%d", &choix) != 1 || (choix != 0 && choix != 1)) {
+                printf("Erreur: Vous devez entrer 0 pour Humain ou 1 pour IA.\n");
+            }
+        } else {
+            // Si fgets échoue, on réinitialise choix pour refaire le choix
+            choix = -1;
         }
-    } while (choix != 0 && choix != 1);
+    } while (choix != 0 && choix != 1); // Boucle tant que l'entrée est incorrecte
+
+    // Assigner le choix à la structure joueur
+    joueurs[i].estIA = (choix == 1);
 }
+
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
     // 1. Saisie et validation du nombre de joueurs
     *nbJoueurs = saisirNombreDeJoueurs();
