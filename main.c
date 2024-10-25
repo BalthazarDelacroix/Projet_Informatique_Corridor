@@ -19,8 +19,8 @@ int main() {
     char typeMur;
 
     // Exemple de boucle pour poser 3 murs
-    for (int i = 0; i < 3; i++) {
-        printf("Entrez les coordonnées pour placer un mur (x y) et le type de mur ('v' pour vertical, 'h' pour horizontal) : ");
+    for (int i = 0; i < 10; i++) {
+        printf("Entrez les coordonnees pour placer un mur (x y) et le type de mur ('v' pour vertical, 'h' pour horizontal) : ");
         scanf("%d %d %c", &x, &y, &typeMur);
 
         placerMur(plateau, x, y, typeMur);
