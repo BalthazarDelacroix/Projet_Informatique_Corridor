@@ -15,7 +15,7 @@ void afficherMenu() {
 
     do {
         // Affichage du menu
-        printf("\n MENU DU JEU \n");
+        printf("\n\t MENU DU JEU \n");
         printf("1. Lancer une nouvelle partie\n");
         printf("2. Reprendre une partie sauvegardee\n");
         printf("3. Afficher l'aide\n");
