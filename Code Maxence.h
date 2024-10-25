@@ -20,7 +20,7 @@ typedef struct {
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);
 void placerMur(char plateau[TAILLE][TAILLE], int x, int y, char typeMur);
-void configurerJoueurs(Joueur joueurs[], int *nbJoueurs,int i);
+void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 void afficherMenu();
 int choisirHumainOuIA(Joueur joueurs[], int i);
 int saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i);
