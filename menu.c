@@ -85,7 +85,7 @@ void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
     do {
         nomUnique = 1;
         printf("Joueur %d, entrez votre nom : \n", i + 1);
-        scanf("%s", nom);
+        scanf("%s", &nom);
 
         // Vérification de l'unicité du nom
         for (int j = 0; j < i; j++) {
@@ -103,9 +103,8 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
     char pion;
     int pionUnique;
     do {
-        pionUnique = 1;
         printf("Joueur %d, choisissez un pion (caractere unique) : \n", i + 1);
-        scanf(" %c", &pion);  // Espace avant %c pour ignorer les caractères résiduels
+        scanf(" %c", &pion);// Espace avant %c pour ignorer les caractères résiduels
 
         // Vérification de l'unicité du pion
         for (int j = 0; j < i; j++) {
@@ -124,9 +123,9 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
 void choisirHumainOuIA(Joueur joueurs[], int i) {
     int choix;
     do {
-        m
+
         printf("Le joueur %s est-il un humain (0) ou une IA (1) ?\n ", joueurs[i].nom);
-        scanf("%d", &choix);
+        scanf(" %d", &choix);
 
         if (choix != 0 && choix != 1) {
             printf("Erreur: Vous devez entrer 0 pour Humain ou 1 pour IA.\n");
