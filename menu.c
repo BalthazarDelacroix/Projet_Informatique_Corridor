@@ -124,7 +124,6 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
 void choisirHumainOuIA(Joueur joueurs[], int i) {
     int choix;
     do {
-        m
         printf("Le joueur %s est-il un humain (0) ou une IA (1) ?\n ", joueurs[i].nom);
         scanf("%d", &choix);
 
