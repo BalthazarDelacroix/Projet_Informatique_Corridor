@@ -73,15 +73,24 @@ void afficherMenu() {
 
 int saisirNombreDeJoueurs() {
     int nbJoueurs;
+    char buffer[10]; // Buffer pour capturer l'entrée
+
     do {
-        printf("Entrez le nombre de joueurs (2 ou 4) : ");
-        scanf("%d", &nbJoueurs);
-        if (nbJoueurs != 2 && nbJoueurs != 4) {
-            printf("Erreur: Le nombre de joueurs doit etre 2 ou 4.\n");
+        printf("Veuillez entrer le nombre de joueurs (entre 2 et 4) : ");
+
+        // Utilisation de fgets pour capturer l'entrée
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            // Tentative de conversion de l'entrée en entier
+            if (sscanf(buffer, "%d", &nbJoueurs) != 1 || nbJoueurs < 2 || nbJoueurs > 4) {
+                printf("Erreur: Vous devez entrer un nombre entre 2 et 4.\n");
+                nbJoueurs = -1;  // Réinitialiser si l'entrée est invalide
+            }
         }
-    } while (nbJoueurs != 2 && nbJoueurs != 4);  // Répète tant que le nombre de joueurs n'est pas valide
-    return nbJoueurs;  // Retourne le nombre de joueurs validé
+    } while (nbJoueurs < 2 || nbJoueurs > 4);  // Boucle tant que l'entrée est incorrecte
+
+    return nbJoueurs;
 }
+
 
 
 void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
