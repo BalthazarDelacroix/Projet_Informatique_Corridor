@@ -38,7 +38,7 @@ void afficherMenu() {
             Joueur joueurs[MAX_JOUEURS];  // Déclaration du tableau de joueurs
             int nbJoueurs;                // Variable pour stocker le nombre de joueurs
             // Appel de la fonction configurerJoueurs avec les parametres requis
-            configurerJoueurs(joueurs, &nbJoueurs);
+            configurerJoueurs(joueurs, &nbJoueurs,saisirNombreDeJoueurs());
         break;
         case 2:
             printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
@@ -79,7 +79,11 @@ int saisirNombreDeJoueurs() {
 }
 
 
-void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
+
+
+void configurerJoueurs(Joueur joueurs[], int *nbJoueurs, int i) {
+
+
     char nom[TAILLE_NOM];
     int nomUnique;
     do {
@@ -88,8 +92,8 @@ void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
         scanf("%s", &nom);
 
         // Vérification de l'unicité du nom
-        for (int j = 0; j < i; j++) {
-            if (strcmp(joueurs[j].nom, nom) == 0) {
+        for (int r = 0; r < i; r++) {
+            if (strcmp(joueurs[r].nom, nom) == 0) {
                 nomUnique = 0; // Nom déjà pris
                 printf("Erreur: Ce nom est deja pris. Veuillez choisir un autre nom.\n");
                 break;
@@ -98,8 +102,6 @@ void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i) {
     } while (nomUnique == 0);
 
     strcpy(joueurs[i].nom, nom);  // Copier le nom dans la structure du joueur
-}
-void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
     char pion;
     int pionUnique;
     do {
@@ -107,8 +109,8 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
         scanf(" %c", &pion);// Espace avant %c pour ignorer les caractères résiduels
 
         // Vérification de l'unicité du pion
-        for (int j = 0; j < i; j++) {
-            if (joueurs[j].pion == pion) {
+        for (int k = 0; k < i; k++) {
+            if (joueurs[k].pion == pion) {
                 pionUnique = 0;  // Pion déjà pris
                 printf("Erreur: Ce pion est deja utilise par un autre joueur.\n");
                 break;
@@ -117,10 +119,6 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
     } while (pionUnique == 0);  // Répète tant que le pion n'est pas unique
 
     joueurs[i].pion = pion;  // Attribue le pion au joueur
-}
-
-
-void choisirHumainOuIA(Joueur joueurs[], int i) {
     int choix;
     do {
 
@@ -133,30 +131,13 @@ void choisirHumainOuIA(Joueur joueurs[], int i) {
     } while (choix != 0 && choix != 1);
 
     joueurs[i].estIA = choix;  // Attribuer le type (Humain ou IA) au joueur
-}
-void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
-    // 1. Saisie et validation du nombre de joueurs
-    *nbJoueurs = saisirNombreDeJoueurs();
-
-    // 2. Boucle pour configurer chaque joueur
-    for (int i = 0; i < *nbJoueurs; i++) {
-        // 3. Saisie et validation du nom
-        saisirNomUnique(joueurs, *nbJoueurs, i);
-
-        // 4. Saisie et validation du pion
-        saisirPionUnique(joueurs, *nbJoueurs, i);
-
-        // 5. Choix entre Humain ou IA
-        choisirHumainOuIA(joueurs, i);
-    }
-
     // Affichage de la configuration finale des joueurs
     printf("\nConfiguration des joueurs :\n");
-    for (int i = 0; i < *nbJoueurs; i++) {
+    for (int j = 0; j < *nbJoueurs; j++){
         printf("Joueur %d : Nom = %s, Pion = %c, Type = %s\n",
-               i + 1,
-               joueurs[i].nom,
-               joueurs[i].pion,
-               joueurs[i].estIA ? "IA" : "Humain");
+               j + 1,
+               joueurs[j].nom,
+               joueurs[j].pion,
+               joueurs[j].estIA ? "IA" : "Humain");
     }
 }
