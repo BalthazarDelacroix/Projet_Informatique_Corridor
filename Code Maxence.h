@@ -18,6 +18,8 @@ typedef struct {
     int estIA;
     int nombreBarrieres; // Nombre de barrieres pour chaque joueur
     int score;  // Score du joueur
+    int x; // Position en x
+    int y; // Position en y
 } Joueur;
 void jouerTour(Joueur joueurs[], int nombreJoueurs);
 int nombreAleatoire(int min, int max);

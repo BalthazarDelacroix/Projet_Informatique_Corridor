@@ -46,10 +46,36 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
 
         // Traiter le choix avec un switch case
         switch (choix) {
-            case 1:
+            case 1: {
+                char direction;
                 printf("%s choisit de se deplacer.\n", joueurActuel->nom);
-                // Logique pour se déplacer ici
+                while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd'){
+                    printf("Dans quelle direction souhaitez-vous vous deplacer ?\n"
+                           "(z = Haut)\n"
+                           "(s = Bas)\n"
+                           "(q = Gauche)\n"
+                           "(d = Droite)\n");
+                    scanf(" %c", &direction);
+                    if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
+                        printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
+                    }
+                }
+                switch (direction){
+                    case 'z':
+                        joueurActuel->y++;
+                        break;
+                    case 's':
+                        joueurActuel->y--;
+                        break;
+                    case 'q':
+                        joueurActuel->x--;
+                        break;
+                    case 'd':
+                        joueurActuel->x++;
+                        break;
+                }
                 break;
+            }
             case 2:
                 printf("%s choisit de passer son tour.\n", joueurActuel->nom);
                 break;
