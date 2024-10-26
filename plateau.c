@@ -1,5 +1,6 @@
 #include "Code Maxence.h"
 
+
 // Fonction pour initialiser le plateau (9x9)
 void initPlateau(char plateau[TAILLE][TAILLE]) {
     for (int i = 0; i < TAILLE; i++) {
@@ -58,3 +59,5 @@ void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int n
         plateau[TAILLE - 1][TAILLE - 1] = joueurs[3].pion;   // Coin inférieur droit
     }
 }
+
+

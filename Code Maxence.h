@@ -8,6 +8,9 @@
 #define TAILLE 9
 #define MUR 'o'  // Représente un mur
 #define VIDE '.'  // Représente une case vide
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
@@ -16,6 +19,8 @@ typedef struct {
     int nombreBarrieres; // Nombre de barrieres pour chaque joueur
     int score;  // Score du joueur
 } Joueur;
+void jouerTour(Joueur joueurs[], int nombreJoueurs);
+int nombreAleatoire(int min, int max);
 void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nbJoueurs);
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);

@@ -1,4 +1,7 @@
 #include "Code Maxence.h"
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     afficherMenu();
@@ -15,6 +18,29 @@ int main() {
     // Affichage du plateau vide
     afficherPlateau(plateau);
 
+    srand(time(NULL)); // Initialisation du générateur aléatoire
+
+
+    int continuer = 1;
+    int tour = 1;
+
+    // Boucle principale du jeu qui permet plusieurs tours
+    while (continuer) {
+        printf("\n----- Tour %d -----\n", tour);
+
+        // Appel de la fonction pour gérer le tour de chaque joueur
+        jouerTour(joueurs, 2);
+
+        // Demander si l'utilisateur souhaite continuer un nouveau tour
+        printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
+        scanf("%d", &continuer);
+
+        if (continuer) {
+            tour++;  // Incrémenter le numéro du tour
+        }
+    }
+
+    printf("Merci d'avoir joue !\n");
 
 
 
