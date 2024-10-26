@@ -11,7 +11,7 @@
 
 
 // Fonction pour afficher le menu et gérer les choix
-void afficherMenu() {
+int afficherMenu() {
     int choix;
     char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 
@@ -45,6 +45,7 @@ void afficherMenu() {
             int nbJoueurs;                // Variable pour stocker le nombre de joueurs
             // Appel de la fonction configurerJoueurs avec les parametres requis
             configurerJoueurs(joueurs, &nbJoueurs);
+            return nbJoueurs;
             break;
         case 2:
             printf("Vous avez choisi : Reprendre une partie sauvegardée\n");

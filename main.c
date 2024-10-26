@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 int main() {
-    afficherMenu();
+    int nbJoueurs=afficherMenu();
 
     char plateau[TAILLE][TAILLE];
 
@@ -29,7 +29,7 @@ int main() {
         printf("\n----- Tour %d -----\n", tour);
 
         // Appel de la fonction pour gérer le tour de chaque joueur
-        jouerTour(joueurs, 2);
+        jouerTour(joueurs, nbJoueurs);
 
         // Demander si l'utilisateur souhaite continuer un nouveau tour
         printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
