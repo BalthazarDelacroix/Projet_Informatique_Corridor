@@ -22,12 +22,12 @@ typedef struct {
     int y; // Position en y
 } Joueur;
 
-void jouerTour(Joueur joueurs[], int nombreJoueurs);
+void jouerTour(Joueur joueurs[], int nombreJoueurs,char plateau[TAILLE][TAILLE]);
 int nombreAleatoire(int min, int max);
 void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int *nbJoueurs);
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);
-void placerMur(char plateau[TAILLE][TAILLE], int x, int y, char typeMur);
+void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[]);
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 void NombreBarrieres(Joueur joueurs[], int nbJoueurs);
 void afficherMenu(Joueur joueurs[],int j);

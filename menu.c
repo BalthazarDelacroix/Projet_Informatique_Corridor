@@ -117,10 +117,10 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
 
     do {
         pionUnique = 1;
-        printf("Joueur %d, choisissez un pion (code hexadecimal unique) : \n", i + 1);
+        printf("Joueur %d, choisissez un pion (code hexadecimal entre 0x21 et 0xFE) : \n", i + 1);
 
         if (scanf("%4s", temp) != 1 || getchar() != '\n') {
-            printf("Erreur: Veuillez entrer un code hexadecimal valide (ex: 41 pour 'A').\n");
+            printf("Erreur: Veuillez entrer un code hexadecimal valide.\n");
             pionUnique = 0;
             while (getchar() != '\n');
             continue;
@@ -128,8 +128,8 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
 
         int code = (int)strtol(temp, NULL, 16);
 
-        if (code < 0x00 || code > 0xFF) {
-            printf("Erreur: Veuillez entrer un code hexadecimal valide pour un caractère imprimable (entre 20 et FE).\n");
+        if (code < 0x21 || code > 0xFE) {
+            printf("Erreur: Veuillez entrer un code hexadecimal valide pour un caractere imprimable (entre 20 et FE).\n");
             pionUnique = 0;
             continue;
         }

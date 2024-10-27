@@ -8,7 +8,7 @@ int nombreAleatoire(int min, int max) {
 }
 
 // Fonction pour appeler un joueur au hasard et lui proposer un menu
-void jouerTour(Joueur joueurs[], int nombreJoueurs) {
+void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]) {
     // Table pour vérifier les joueurs qui ont déjà joué
     int dejaJoue[nombreJoueurs];
     for (int i = 0; i < nombreJoueurs; i++) {
@@ -38,11 +38,11 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
             printf("Votre choix (1-4) : ");
             scanf("%d", &choix);
 
-            // Vérification que le choix est bien entre 1 et 4.
-            if (choix != 1 && choix != 2 && choix != 3 && choix != 4) {
-                printf("Choix invalide. Veuillez choisir une option disponible.\n");
+            // Vérification que le choix est bien entre 1 et 4
+            if (choix < 1 || choix > 4) {
+                printf("Choix invalide.\n");
             }
-        } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
+        } while (choix < 1 || choix > 4 || (choix == 4 && joueurActuel->nombreBarrieres == 0));
 
         // Traiter le choix avec un switch case
         switch (choix) {
@@ -58,21 +58,41 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                     scanf(" %c", &direction);
                     if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
                         printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
+
                     }
-                }
-                while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
+                }while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
                 switch (direction){
                     case 'z':
-                        joueurActuel->y++;
+                        if (joueurActuel->x == 0) {
+                            printf("Vous ne pouvez pas aller plus haut.");
+                        }
+                        else {
+                            joueurActuel->x++;
+                        }
                         break;
                     case 's':
-                        joueurActuel->y--;
+                        if (joueurActuel->x == TAILLE-1) {
+                            printf("Vous ne pouvez pas aller plus bas");
+                        }
+                        else {
+                            joueurActuel->x--;
+                        }
                         break;
                     case 'q':
-                        joueurActuel->x--;
+                        if (joueurActuel->y == 0) {
+                            printf("Vous ne pouvez pas aller plus a gauche");
+                        }
+                        else {
+                            joueurActuel->y--;
+                        }
                         break;
                     case 'd':
-                        joueurActuel->x++;
+                        if (joueurActuel->x == TAILLE-1) {
+                            printf("Vous ne pouvez pas aller plus a droite");
+                        }
+                        else {
+                            joueurActuel->x++;
+                        }
                         break;
                 }
                 break;
@@ -85,13 +105,17 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                 // Logique pour annuler une action ici
                 break;
             case 4:
-                if (joueurActuel->nombreBarrieres > 0) {
-                    printf("%s choisit de placer un mur.\n", joueurActuel->nom);
-                    joueurActuel->nombreBarrieres--;
-                    // Logique pour placer un mur ici
-                } else {
-                    printf("%s ne possede plus de barrieres disponibles ! \n", joueurActuel->nom);
-                }
+
+                    if (joueurActuel->nombreBarrieres > 0) {
+                        printf("%s choisit de placer un mur.\n", joueurActuel->nom);
+                        placerMur(plateau, joueurActuel);
+                        joueurActuel->nombreBarrieres--;
+                        afficherPlateau(plateau);
+                        // Logique pour placer un mur ici
+                    } else {
+                        printf("%s ne possede plus de barrieres disponibles !\n", joueurActuel->nom);
+                    }
+
                 break;
             default:
                 // Ce cas ne devrait jamais se produire

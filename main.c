@@ -26,7 +26,7 @@ int main() {
     while (continuer) {
         printf("\n----- Tour %d -----\n", tour);
         // Appel de la fonction pour gérer le tour de chaque joueur
-        jouerTour(joueurs, j);
+        jouerTour(joueurs, j, plateau);
 
         // Demander si l'utilisateur souhaite continuer un nouveau tour
         printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
@@ -50,7 +50,7 @@ int main() {
         printf("Entrez les coordonnees pour placer un mur (x y) et le type de mur ('v' pour vertical, 'h' pour horizontal) : ");
         scanf("%d %d %c", &x, &y, &typeMur);
 
-        placerMur(plateau, x, y, typeMur);
+        placerMur(plateau, joueurs);
         afficherPlateau(plateau);  // Réafficher le plateau après la pose d'un mur
     }
     return 0;
