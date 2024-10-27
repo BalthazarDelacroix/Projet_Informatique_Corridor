@@ -79,7 +79,7 @@ int saisirNombreDeJoueurs() {
         if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
             // Tentative de conversion de l'entrée en entier
             if (sscanf(buffer, "%d", &nbJoueurs) != 1 || (nbJoueurs != 2 && nbJoueurs != 4)) {
-                printf("Erreur: Vous devez entrer un nombre entre 2 et 4.\n");
+                printf("Erreur: Vous devez entrer  2 ou 4.\n");
                 nbJoueurs = -1;  // Réinitialiser si l'entrée est invalide
             }
         }
