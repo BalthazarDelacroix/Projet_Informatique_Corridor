@@ -32,9 +32,16 @@ void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[]) {
 
     do {
         printf("Entrez les coordonnees (x, y) du mur et sa position (v: verticale ou h: horizontale) : \n");
-        scanf("%d %d %c", &x, &y, &typeMur);
+        // Vérification du retour de scanf pour détecter les erreurs de saisie
+        if (scanf("%d %d %c", &x, &y, &typeMur) != 3) {
+            printf("Erreur : veuillez entrer deux entiers suivis d'un caractere ('v' ou 'h').\n");
 
-        // Vérification des conditions de placement
+            // Vider le buffer sans fonction séparée
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF); // Ignore tous les caractères jusqu'à la fin de la ligne
+            continue;
+        }
+        //Verifie conditions de placement
         if ((x < 0 || x >= TAILLE || y < 0 || y >= TAILLE) ||  // Coordonnées hors limites
             (typeMur != 'v' && typeMur != 'h') ||              // Type de mur invalide
             (typeMur == 'h' && (x - y != 1 || plateau[x][y] != VIDE || plateau[x][y + 1] != VIDE ||
