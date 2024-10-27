@@ -80,6 +80,31 @@ int main() {
                              termine = 1;
                             }
                     }
+                    if (termine==0)
+                     do{
+                        fflush(stdin);
+                        printf("Souhaitez-vous interrompre la partie (0: non ou 1: oui) ?\n");
+
+                        // Utilisation de fgets pour capturer l'entrée en entier
+                        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+                            // Tentative de conversion de l'entrée en entier
+                            if (sscanf(buffer, "%d", &choix3) != 1 || (choix3 != 0 && choix3 != 1)) {
+                                printf("Erreur: Vous devez entrer 0 pour non ou 1 pour oui.\n");
+                                choix3 = -1; // Réinitialisation de choix2 pour continuer la boucle
+                            }
+                        }
+                        else {
+                            // Si fgets échoue, on réinitialise choix pour refaire le choix
+                            choix3 = -1;
+                        }
+
+                        // Ce bloc doit être exécuté si choix2 est égal à 1
+                        if (choix3 == 1) {
+                            termine = 2;
+                            printf("La partie a ete interrompue. \n");
+                        }
+
+                     } while (choix3 != 0 && choix3 != 1); // Boucle tant que l'entrée est incorrecte
                     if (termine == 1) {
                         do {
                             fflush(stdin);
@@ -109,31 +134,6 @@ int main() {
 
                         } while (choix2 != 0 && choix2 != 1); // Boucle tant que l'entrée est incorrecte
                     }
-                    do{
-                        fflush(stdin);
-                        printf("Souhaitez-vous interrompre la partie (0: non ou 1: oui) ?\n");
-
-                        // Utilisation de fgets pour capturer l'entrée en entier
-                        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-                            // Tentative de conversion de l'entrée en entier
-                            if (sscanf(buffer, "%d", &choix3) != 1 || (choix3 != 0 && choix3 != 1)) {
-                                printf("Erreur: Vous devez entrer 0 pour non ou 1 pour oui.\n");
-                                choix3 = -1; // Réinitialisation de choix2 pour continuer la boucle
-                            }
-                        }
-                        else {
-                            // Si fgets échoue, on réinitialise choix pour refaire le choix
-                            choix3 = -1;
-                        }
-
-                        // Ce bloc doit être exécuté si choix2 est égal à 1
-                        if (choix3 == 1) {
-                            termine = 1;
-                            printf("La partie a ete interrompue. \n");
-                            initPlateau(plateau);
-                        }
-
-                     } while (choix3 != 0 && choix3 != 1); // Boucle tant que l'entrée est incorrecte
 
                     tour ++;
 

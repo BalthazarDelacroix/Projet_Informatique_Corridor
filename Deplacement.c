@@ -187,6 +187,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
             case 3:
                 printf("%s veut annuler une action.\n", joueurActuel->nom);
                 // Logique pour annuler une action ici
+
                 break;
             case 4:
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
