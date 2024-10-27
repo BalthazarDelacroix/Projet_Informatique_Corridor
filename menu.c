@@ -1,5 +1,3 @@
-
-
 #include "Code Maxence.h"
 #include <stdio.h>
 #include <string.h>
@@ -11,7 +9,7 @@
 
 
 // Fonction pour afficher le menu et gérer les choix
-int afficherMenu() {
+void afficherMenu(int j) {
     int choix;
     char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 
@@ -42,10 +40,8 @@ int afficherMenu() {
             printf("Vous avez choisi : Lancer une nouvelle partie\n");
             // Appeler ici la fonction qui démarre une nouvelle partie
             Joueur joueurs[MAX_JOUEURS];  // Déclaration du tableau de joueurs
-            int nbJoueurs;                // Variable pour stocker le nombre de joueurs
             // Appel de la fonction configurerJoueurs avec les parametres requis
-            configurerJoueurs(joueurs, &nbJoueurs);
-            return nbJoueurs;
+            configurerJoueurs(joueurs, &j);
             break;
         case 2:
             printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
@@ -83,12 +79,12 @@ int saisirNombreDeJoueurs() {
         // Utilisation de fgets pour capturer l'entrée
         if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
             // Tentative de conversion de l'entrée en entier
-            if (sscanf(buffer, "%d", &nbJoueurs) != 1 || nbJoueurs < 2 || nbJoueurs > 4) {
+            if (sscanf(buffer, "%d", &nbJoueurs) != 1 || (nbJoueurs != 2 && nbJoueurs != 4)) {
                 printf("Erreur: Vous devez entrer un nombre entre 2 et 4.\n");
                 nbJoueurs = -1;  // Réinitialiser si l'entrée est invalide
             }
         }
-    } while (nbJoueurs < 2 || nbJoueurs > 4);  // Boucle tant que l'entrée est incorrecte
+    } while (nbJoueurs != 2 && nbJoueurs != 4);  // Boucle tant que l'entrée est incorrecte
 
     return nbJoueurs;
 }
@@ -180,8 +176,6 @@ void choisirHumainOuIA(Joueur joueurs[], int i) {
 }
 
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
-    // 1. Saisie et validation du nombre de joueurs
-    *nbJoueurs = saisirNombreDeJoueurs();
     // 2. Boucle pour configurer chaque joueur
     for (int i = 0; i < *nbJoueurs; i++) {
         // 3. Saisie et validation du nom
@@ -203,6 +197,7 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
                joueurs[i].pion,
                joueurs[i].estIA ? "IA" : "Humain");
     }
+
 }
 
 void AfficherAide(){

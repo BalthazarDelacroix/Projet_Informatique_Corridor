@@ -4,17 +4,15 @@
 #include <stdlib.h>
 
 int main() {
-    int nbJoueurs=afficherMenu();
-
+    int j =saisirNombreDeJoueurs();
     char plateau[TAILLE][TAILLE];
-
-
     // Initialisation du plateau
     initPlateau(plateau);
     Joueur joueurs[MAX_JOUEURS];
 
-    // Placer les pions sur le plateau
-    placerPionsSurPlateau(plateau, joueurs, saisirNombreDeJoueurs());
+    afficherMenu(j);
+
+    placerPionsSurPlateau(plateau, joueurs,&j);
     // Affichage du plateau vide
     afficherPlateau(plateau);
 
@@ -27,9 +25,8 @@ int main() {
     // Boucle principale du jeu qui permet plusieurs tours
     while (continuer) {
         printf("\n----- Tour %d -----\n", tour);
-
         // Appel de la fonction pour gérer le tour de chaque joueur
-        jouerTour(joueurs, nbJoueurs);
+        jouerTour(joueurs, j);
 
         // Demander si l'utilisateur souhaite continuer un nouveau tour
         printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");

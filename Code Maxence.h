@@ -21,18 +21,20 @@ typedef struct {
     int x; // Position en x
     int y; // Position en y
 } Joueur;
+
 void jouerTour(Joueur joueurs[], int nombreJoueurs);
 int nombreAleatoire(int min, int max);
-void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nbJoueurs);
+void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int *nbJoueurs);
 void initPlateau(char plateau[TAILLE][TAILLE]);
 void afficherPlateau(char plateau[TAILLE][TAILLE]);
 void placerMur(char plateau[TAILLE][TAILLE], int x, int y, char typeMur);
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
-int afficherMenu();
+void afficherMenu(int j);
 void choisirHumainOuIA(Joueur joueurs[], int i);
 void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i);
 void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i);
 int saisirNombreDeJoueurs();
 void AfficherAide();
+
 
 #endif
