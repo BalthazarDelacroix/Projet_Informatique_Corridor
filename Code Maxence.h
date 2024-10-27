@@ -11,10 +11,6 @@
 #define CASE '.'  // Représente une case vide
 #define MUR_HORIZONTALE '-'
 #define MUR_VERTICALE '|'
-#define GAGNERJ1(x, y) (((y)==16)?(1):(0))
-#define GAGNERJ2(x, y) (((y)==0)?(1):(0))
-#define GAGNERJ3(x, y) (((x)==16)?(1):(0))
-#define GAGNERJ4(x, y) (((x)==0)?(1):(0))
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
