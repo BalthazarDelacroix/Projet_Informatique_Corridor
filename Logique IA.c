@@ -34,7 +34,6 @@ void danger_joueur_proche(Joueur joueurs[], char plateau [2*TAILLE-1] [2*TAILLE-
     Joueur ia;
     if (nb_joueurs == 2) {
         int i,j1, j2;
-        Joueur ia;
         j1 = 16;
         j2 = 0;
         if(joueurs[0].estIA) ia=joueurs[0];
@@ -52,13 +51,15 @@ void danger_joueur_proche(Joueur joueurs[], char plateau [2*TAILLE-1] [2*TAILLE-
                     ia=joueurs[i];
                 }
             }
-            while ((joueurs[1].y != 16)||(joueurs[2].y != 0)||(joueurs[3].x != 16)||(joueurs[4].x != 0)){
-                dis_1 = j1_y - joueurs[1].y;
-                dis_2 = j2_y - joueurs[2].y;
-                dis_3 = j3_x - joueurs[3].x;
-                dis_4 = j4_x - joueurs[4].x;
+            while ((joueurs[0].y != 16)||(joueurs[1].y != 0)||(joueurs[2].x != 16)||(joueurs[3].x != 0)){
+                dis_1 = j1_y - joueurs[0].y;
+                dis_2 = j2_y - joueurs[1].y;
+                dis_3 = j3_x - joueurs[2].x;
+                dis_4 = j4_x - joueurs[3].x;
 
             }
+
         }
     }
 }
+

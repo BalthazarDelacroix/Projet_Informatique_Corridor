@@ -343,6 +343,8 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
                 placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
                 afficherPlateau(plateau);
                 NombreBarrieres(joueurs,j);
+                *termine =0;
+                *blocage=0;
 
 
             }
@@ -351,6 +353,7 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
                 placerPionsSurPlateau(plateau,joueurs,&j);
                 NombreBarrieres(joueurs,j);
                 sauvegarderJoueurs(joueurs,j,nomFichier);
+                *blocage=0;
 
             }
         }
