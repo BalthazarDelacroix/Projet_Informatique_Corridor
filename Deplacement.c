@@ -48,7 +48,6 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
         // Traiter le choix avec un switch case
         switch (choix) {
-            fflush(stdin);
             // Inclure cette logique de déplacement dans le `case 1` de `jouerTour` pour gérer le déplacement
             case 1: {
                 char direction;
@@ -206,4 +205,105 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
         // Afficher le plateau après déplacement
         afficherPlateau(plateau);
     }
+}
+void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
+    if (nombreJoueurs==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0)) {
+                        if (joueurs[0].y == 16) {
+                            printf("%s a gagne la partie. \n",joueurs[0].nom);
+                            joueurs[0].score += 5;
+                            printf("%s a %d points. \n",joueurs[0].nom,joueurs[0].score);
+                            *termine = 1;
+                        }
+                        else if (joueurs[1].y == 0) {
+                            printf("%s a gagne la partie. \n",joueurs[1].nom);
+                            joueurs[1].score += 5;
+                            printf("%s a %d points. \n",joueurs[1].nom,joueurs[1].score);
+                            *termine = 1;
+                        }
+                        else if (joueurs[2].x == 16) {
+                            printf("%s a gagne la partie. \n",joueurs[2].nom);
+                            joueurs[2].score += 5;
+                            printf("%s a %d points. \n",joueurs[2].nom,joueurs[2].score);
+                            *termine = 1;
+                        }
+                        else if (joueurs[3].x == 16) {
+                            printf("%s a gagne la partie. \n",joueurs[3].nom);
+                            joueurs[3].score += 5;
+                            printf("%s a %d points. \n",joueurs[3].nom,joueurs[3].score);
+                            *termine = 1;
+                        }
+                    }
+                    else if (nombreJoueurs==2 &&(joueurs[0].y == 16 || joueurs[1].y == 0)) {
+                            if (joueurs[0].y == 16) {
+                            printf("%s a gagne la partie. \n",joueurs[0].nom);
+                            joueurs[0].score += 5;
+                            printf("%s a %d points. \n",joueurs[0].nom,joueurs[0].score);
+                            *termine = 1;
+                            }
+                            else if (joueurs[1].y == 0) {
+                             printf("%s a gagne la partie. \n",joueurs[1].nom);
+                             joueurs[1].score += 5;
+                             printf("%s a %d points. \n",joueurs[1].nom,joueurs[1].score);
+                             *termine = 1;
+                            }
+                    }
+}
+void interrompre_partie(int*termine) {
+    char buffer [10];
+    int choix;
+    do{
+        fflush(stdin);
+        printf("Souhaitez-vous interrompre la partie (0: non ou 1: oui) ?\n");
+
+        // Utilisation de fgets pour capturer l'entrée en entier
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            // Tentative de conversion de l'entrée en entier
+            if (sscanf(buffer, "%d", &choix) != 1 || (choix != 0 && choix != 1)) {
+                printf("Erreur: Vous devez entrer 0 pour non ou 1 pour oui.\n");
+                choix = -1; // Réinitialisation de choix2 pour continuer la boucle
+            }
+        }
+        else {
+            // Si fgets échoue, on réinitialise choix pour refaire le choix
+            choix = -1;
+        }
+
+        // Ce bloc doit être exécuté si choix2 est égal à 1
+        if (choix == 1) {
+            *termine = 2;
+            printf("La partie a ete interrompue. \n");
+        }
+
+    } while (choix != 0 && choix != 1); // Boucle tant que l'entrée est incorrecte
+}
+void rejouer_partie (int*termine,int*choix2) {
+    int choix;
+    char buffer[10];
+    do {
+        fflush(stdin);
+        printf("Souhaitez-vous refaire une partie (0: non ou 1: oui) ?\n");
+
+        // Utilisation de fgets pour capturer l'entrée en entier
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            // Tentative de conversion de l'entrée en entier
+            if (sscanf(buffer, "%d", &choix) != 1 || (choix != 0 && choix != 1)) {
+                printf("Erreur: Vous devez entrer 0 pour non ou 1 pour oui.\n");
+                choix = -1; // Réinitialisation de choix pour continuer la boucle
+            }
+        } else {
+            // Si fgets échoue, on réinitialise choix pour refaire le choix
+            choix = -1;
+        }
+
+        // Ce bloc doit être exécuté si choix est égal à 1
+        if (choix == 1) {
+            printf("UNE NOUVELLE PARTIE COMMENCE.\n");
+            *termine = 0;
+            *choix2 = 1;
+        }
+        else if(choix==0) {
+            *choix2=0;
+        }
+
+    } while (choix != 0 && choix != 1); // Boucle tant que l'entrée est incorrecte
 }

@@ -50,5 +50,8 @@ void AfficherAide();
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 void changerCouleur(int couleur);
 void reinitialiserCouleur();
+void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine);
+void interrompre_partie(int*termine);
+void rejouer_partie (int*termine,int*choix2);
 
 #endif
