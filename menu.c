@@ -73,7 +73,7 @@ int saisirNombreDeJoueurs() {
     char buffer[10]; // Buffer pour capturer l'entrée
 
     do {
-        printf("Veuillez entrer le nombre de joueurs (entre 2 et 4) : ");
+        printf("Veuillez entrer le nombre de joueurs (2 ou 4) : ");
 
         // Utilisation de fgets pour capturer l'entrée
         if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
