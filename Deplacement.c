@@ -57,7 +57,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
                            "(d = Droite)\n");
                     scanf(" %c", &direction);
                     if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
-                        printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
+                        printf("Entree invalide. Veuillez entrer une seule direction valide.\n");
 
                     }
                 }while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');

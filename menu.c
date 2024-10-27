@@ -222,5 +222,5 @@ void AfficherAide(){
            "- Chaque barriere a une longueur de 2 cases et se positionnera entre deux lignes ou deux\n"
            "colonnes.\n"
            "- 1 zone de stockage par joueur des barrieres en début de partie (inventaire)\n"
-           "- ♟Un pion par joueur avec un jeton a choisir parmi un caractere de son choix");
+           "- Un pion par joueur avec un jeton a choisir parmi un caractere de son choix");
 }
