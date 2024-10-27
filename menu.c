@@ -87,8 +87,9 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
 
     do {
         pionUnique = 1;
+        //Saisie du pion
         printf("Joueur %d, choisissez un pion (code hexadecimal entre 0x21 et 0xFE) : \n", i + 1);
-
+        // verifie si la saisie est valide
         if (scanf("%4s", temp) != 1 || getchar() != '\n') {
             printf("Erreur: Veuillez entrer un code hexadecimal valide.\n");
             pionUnique = 0;
@@ -97,7 +98,7 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
         }
 
         int code = (int)strtol(temp, NULL, 16);
-
+        // Verifie si le code hexa est correcte
         if (code < 0x21 || code > 0xFE) {
             printf("Erreur: Veuillez entrer un code hexadecimal valide pour un caractere imprimable (entre 20 et FE).\n");
             pionUnique = 0;
@@ -105,7 +106,7 @@ void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i) {
         }
 
         pion = (unsigned char)code;
-
+        //Unicite du pion
         for (int k = 0; k < i; k++) {
             if (joueurs[k].pion == pion) {
                 pionUnique = 0;
@@ -144,6 +145,7 @@ void choisirHumainOuIA(Joueur joueurs[], int i) {
     joueurs[i].estIA = (choix == 1);
 }
 void NombreBarrieres(Joueur joueurs[], int nbJoueurs) {
+    // Si il y a 2 joueurs, chacun aura 10 barrieres, sinon pour 4 joueurs chacun aura 5 barrieres
     if (nbJoueurs == 2) {
         for(int i=0;i<nbJoueurs;i++) {
             joueurs[i].nombreBarrieres = 10;
@@ -157,6 +159,7 @@ void NombreBarrieres(Joueur joueurs[], int nbJoueurs) {
 
 }
 void Init_score(Joueur joueurs[], int nbJoueurs) {
+    //Initialise les scores en fonction du nombre de joueurs
     if (nbJoueurs == 2) {
         for(int i=0;i<nbJoueurs;i++) {
             joueurs[i].score = 0;
@@ -198,7 +201,7 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
     }
 
 }
-
+// Affichage de l'aide
 void AfficherAide(){
     printf("- Chaque joueur est soit humain soit une IA, a choisir avant de lancer la partie.\n"
            "- Plateau de 9 cases par ligne et 9 cases par colonne. Entre les lignes et entre les colonnes il y"

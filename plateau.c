@@ -34,13 +34,13 @@ void afficherPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
             if (plateau[i][j] != CASE && plateau[i][j] != ' ' && plateau[i][j] != MUR_HORIZONTALE && plateau[i][j] != MUR_VERTICALE ) {
                 changerCouleur(9); // Bleu pour les pions
                 printf("%c ", plateau[i][j]);
-                reinitialiserCouleur();
+                reinitialiserCouleur();// on reinitialise la couleur ensuite
             }
             // Vérifier si c'est un mur horizontal ou vertical
             else if (plateau[i][j] == MUR_HORIZONTALE || plateau[i][j] == MUR_VERTICALE) {
                 changerCouleur(12); // Rouge pour les murs horizontaux
                 printf("%c ", plateau[i][j]);
-                reinitialiserCouleur();
+                reinitialiserCouleur(); // on reinitialise la couleur ensuite
             }
 
             else {
@@ -56,16 +56,14 @@ void afficherPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
 // typeMur : 'v' pour mur vertical, 'h' pour mur horizontal
 
 
-void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombreDeJoueurs) {
-    int x, y;
-    char typeMur;
-    int erreur;
+void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombreDeJoueurs,int*x,int*y,char * typeMur) {
 
+    int erreur;
     do {
         erreur = 0;  // Réinitialisation de l'erreur pour chaque nouvelle tentative
 
         printf("Entrez les coordonnees x, y (0 a 15) du mur et sa position (v: verticale ou h: horizontale). Pour une position horizontale, x est impaire et y paire. Pour une position verticale, x est paire et y impaire : \n");
-        if (scanf("%d %d %c", &x, &y, &typeMur) != 3) {
+        if (scanf("%d %d %c", x, y, typeMur) != 3) {
             printf("Erreur : veuillez entrer deux entiers suivis d'un caractere ('v' ou 'h').\n");
             erreur = 1;
 
@@ -73,37 +71,37 @@ void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombr
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
-        else if (x < 0 || x > 2*TAILLE-3 || y < 0 || y > 2*TAILLE-3 || (typeMur != 'v' && typeMur != 'h')) {
+        else if (*x < 0 || *x > 2*TAILLE-3 || *y < 0 || *y > 2*TAILLE-3 || (*typeMur != 'v' && *typeMur != 'h')) { // Saisie valide ou non
             printf("Coordonnees ou position non valides.\n");
             erreur = 1;
         }
-        else if ((typeMur == 'h' && y > 2*TAILLE-3) || (typeMur == 'v' && x > 2*TAILLE-3)) {
-            printf("Emplacement hors plateau pour un mur de type %c.\n", typeMur);
+        else if ((*typeMur == 'h' && *y > 2*TAILLE-3) || (*typeMur == 'v' && *x > 2*TAILLE-3)) { // Verifie si les coordonnees ne sont pas hors plateau
+            printf("Emplacement hors plateau pour un mur de type %c.\n", *typeMur);
             erreur = 1;
         }
 
 
-        else if ((typeMur == 'h' && (x % 2 ==0 || y%2 != 0)) || (typeMur == 'v' && (y % 2==0 || x%2 != 0))) {
+        else if ((*typeMur == 'h' && (*x % 2 ==0 || *y%2 != 0)) || (*typeMur == 'v' && (*y % 2==0 || *x%2 != 0))) { // Verifie si les coordonnees sont correctes
             printf("Emplacement invalide de mur \n");
             erreur = 1;
         }
-        else if ((typeMur == 'h' && (plateau[x][y] == MUR_HORIZONTALE )) ||
-                 (typeMur == 'v' && (plateau[x][y] == MUR_VERTICALE ))) {
+        else if ((*typeMur == 'h' && (plateau[*x][*y] == MUR_HORIZONTALE )) || // On verifie si il y a deja un mur
+                 (*typeMur == 'v' && (plateau[*x][*y] == MUR_VERTICALE ))) {
             printf("Il y a deja un mur pose.\n");
             erreur = 1;
         }
         // Placement du mur si toutes les vérifications ont été passées
         if (erreur == 0) {
-            if (typeMur == 'h') {
-                plateau[x][y] = MUR_HORIZONTALE;
-                plateau[x][y+1] = MUR_HORIZONTALE;
-                plateau[x][y+2] = MUR_HORIZONTALE;
-                printf("Mur horizontal place en (%d, %d) et (%d, %d) et (%d, %d).\n", x, y, x, y + 1,x,y+2);
-            } else if (typeMur == 'v') {
-                plateau[x][y] = MUR_VERTICALE;
-                plateau[x+1][y] = MUR_VERTICALE;
-                plateau[x+2][y] = MUR_VERTICALE;
-                printf("Mur vertical place en (%d, %d) et (%d, %d)et (%d, %d).\n", x, y, x + 1, y,x+2,y);
+            if (*typeMur == 'h') {
+                plateau[*x][*y] = MUR_HORIZONTALE;
+                plateau[*x][*y+1] = MUR_HORIZONTALE;
+                plateau[*x][*y+2] = MUR_HORIZONTALE;
+                printf("Mur horizontal place en (%d, %d) et (%d, %d) et (%d, %d).\n", *x, *y, *x, *y + 1,*x,*y+2);
+            } else if (*typeMur == 'v') {
+                plateau[*x][*y] = MUR_VERTICALE;
+                plateau[*x+1][*y] = MUR_VERTICALE;
+                plateau[*x+2][*y] = MUR_VERTICALE;
+                printf("Mur vertical place en (%d, %d) et (%d, %d)et (%d, %d).\n", *x, *y, *x + 1, *y,*x+2,*y);
             }
         }
 

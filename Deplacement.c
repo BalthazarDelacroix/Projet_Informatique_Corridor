@@ -7,7 +7,7 @@ int nombreAleatoire(int min, int max) {
 }
 
 // Fonction pour appeler un joueur au hasard et lui proposer un menu
-void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*TAILLE-1]) {
+void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*TAILLE-1],const char* nomFichier,int* blocage,int*termine) {
     // Table pour vérifier les joueurs qui ont déjà joué
     int dejaJoue[nombreJoueurs];
     for (int i = 0; i < nombreJoueurs; i++) {
@@ -16,8 +16,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
     int joueursRestants = nombreJoueurs;
 
-    while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)){
-        fflush(stdin);
+    while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)&&*blocage==0){
         // Choisir un joueur aléatoirement qui n'a pas encore joué
         int indexJoueur;
         do {
@@ -26,9 +25,11 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
         Joueur *joueurActuel = &joueurs[indexJoueur];
         printf("\nAu tour de %s !\n", joueurActuel->nom);
-
+        int annulation=1;//Annulation possible d'un coup
         // Afficher le menu d'options
         int choix;
+        int x,y;
+        char typeMur;
         do {
             printf("Choisissez une action :\n");
             printf("1. Se deplacer\n");
@@ -41,12 +42,22 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                 printf("Choix invalide.\n");
                 while (getchar() != '\n'); // Vider le buffer
                 choix = -1; // Valeur invalide pour relancer la boucle
-            } else if (choix < 1 || choix > 4 || (choix == 4 && joueurActuel->nombreBarrieres == 0)) {
-                printf("Choix invalide ou mur non disponible.\n");
             }
-        } while (choix < 1 || choix > 4 || (choix == 4 && joueurActuel->nombreBarrieres == 0));
-
+            else if (choix < 1 || choix > 4 ) {
+                printf("Choix invalide .\n");
+            }
+            else if (choix == 4 && joueurActuel->nombreBarrieres == 0) {
+                printf("Mur non disponible .\n");
+            }
+            else if (choix==3&& annulation ==0) {
+                printf("Annulation impossible .\n");
+            }
+        } while (choix < 1 || choix > 4 || (choix == 4 && joueurActuel->nombreBarrieres == 0)||(choix==3&annulation ==0));
         // Traiter le choix avec un switch case
+        int newX = joueurActuel->x;
+        int newY = joueurActuel->y;
+        int murX = joueurActuel->x;
+        int murY = joueurActuel->y;
         switch (choix) {
             // Inclure cette logique de déplacement dans le `case 1` de `jouerTour` pour gérer le déplacement
             case 1: {
@@ -54,6 +65,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                 printf("%s choisit de se deplacer.\n", joueurActuel->nom);
                 int deplacementPossible;
                 do {
+                    // Choix de la direction
                     printf("Dans quelle direction souhaitez-vous vous deplacer ?\n"
                            "(z = Haut)\n"
                            "(s = Bas)\n"
@@ -67,17 +79,13 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                     }
 
 
-                    // Calculer la position cible et vérifier s'il y a un mur bloquant
-                    int newX = joueurActuel->x;
-                    int newY = joueurActuel->y;
-                    int murX = joueurActuel->x;
-                    int murY = joueurActuel->y;
+
                     deplacementPossible = 1;
 
                     switch (direction) {
                         case 'z':
                             if (joueurActuel->x == 0) {
-                                printf("Vous ne pouvez pas aller plus haut.\n");
+                                printf("Vous ne pouvez pas aller plus haut.\n");// Verifie si on est pas hors plateau apres
                                 deplacementPossible = 0;
                             } else if (plateau[murX - 1][murY] == MUR_HORIZONTALE) { // Vérifier la présence d'un mur horizontal
                                 printf("Un mur bloque le passage en haut.\n");
@@ -181,17 +189,18 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
             }
 
             case 2:
+                // On passe le tour
                 printf("%s choisit de passer son tour.\n", joueurActuel->nom);
                 break;
             case 3:
                 printf("%s veut annuler une action.\n", joueurActuel->nom);
                 // Logique pour annuler une action ici
-
+                Annulation_Plateau(nomFichier,&annulation,plateau);
                 break;
             case 4:
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
-                placerMur(plateau, joueurs, nombreJoueurs);  // placement murs
-                joueurActuel->nombreBarrieres--;
+                placerMur(plateau, joueurs, nombreJoueurs,&x,&y,&typeMur);  // placement murs
+                joueurActuel->nombreBarrieres--; // On eneleve une barriere au joueur
                 printf("Il vous reste %d barrieres. \n",joueurActuel->nombreBarrieres);
                 break;
             default:
@@ -202,12 +211,14 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
         // Marquer ce joueur comme ayant joué
         dejaJoue[indexJoueur] = 1;
         joueursRestants--;
-
         // Afficher le plateau après déplacement
         afficherPlateau(plateau);
+        blocage_partie (joueurs,plateau,blocage,nombreJoueurs,termine);//Verifie blocage
+
     }
 }
 void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
+    //On verifie si pour 4 joeurs, l'un d'entre eux à gagner
     if (nombreJoueurs==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0)) {
                         if (joueurs[0].y == 16) {
                             printf("%s a gagne la partie. \n",joueurs[0].nom);
@@ -233,7 +244,7 @@ void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
                             printf("%s a %d points. \n",joueurs[3].nom,joueurs[3].score);
                             *termine = 1;
                         }
-                    }
+                    } // On verifie si pour 2 joueurs, l'un d'entre eux a gagné
                     else if (nombreJoueurs==2 &&(joueurs[0].y == 16 || joueurs[1].y == 0)) {
                             if (joueurs[0].y == 16) {
                             printf("%s a gagne la partie. \n",joueurs[0].nom);
@@ -309,22 +320,22 @@ void rejouer_partie (int*termine,int*choix2) {
 
     } while (choix != 0 && choix != 1); // Boucle tant que l'entrée est incorrecte
 }
-void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],int j,char plateau [2*TAILLE-1][2*TAILLE-1],const char*nomFichier){
+void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],int j,char plateau [2*TAILLE-1][2*TAILLE-1],const char*nomFichier,int*blocage){
     do {
         *termine = 0;
         printf("\n----- Tour suivant -----\n");
         // Appel de la fonction pour gérer le tour de chaque joueur
-        jouerTour(joueurs, j, plateau);
+        jouerTour(joueurs, j, plateau,nomFichier,blocage,termine);
         //Appel du sous-programme qui gere le gagnant de la partie
         gagnant (joueurs,j,termine);
         //Gestion interruption partie
-        if (*termine==0) { //Interruption de la partie ?
+        if (*termine==0||*blocage==0) { //Interruption de la partie ?
             interrompre_partie(termine,sauvegarde);
             if (*sauvegarde==1) {
                 sauvegarderJoueurs(joueurs,j,nomFichier);
             }
         }
-        if (*termine == 1) {//rejouer une nouvelle partie ?
+        if (*termine == 1 || *blocage!=0) {//rejouer une nouvelle partie ?
             rejouer_partie(termine,choix2);
             // Ce bloc doit être exécuté si choix2 est égal à 1
             if (*choix2 == 1) {
@@ -332,6 +343,8 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
                 placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
                 afficherPlateau(plateau);
                 NombreBarrieres(joueurs,j);
+
+
             }
             else {
                 initPlateau(plateau);
@@ -342,4 +355,71 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
             }
         }
     }while(*termine == 0);
+}
+void blocage_partie (Joueur joueurs[],char plateau [2*TAILLE-1][2*TAILLE-1],int*blocage,int nombrejoueurs, int* termine) {
+    for (int i = 0; i < nombrejoueurs; i++) {
+        if (joueurs[i].y==0&&joueurs[i].x!=0&& joueurs[i].x!=16) {
+            if (plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].y==16&&joueurs[i].x!=0&& joueurs[i].x!=16) {
+            if (plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].x==16&&joueurs[i].y!=0&& joueurs[i].y!=16) {
+            if (plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE&&plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE&&plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].x==0&&joueurs[i].y!=0&& joueurs[i].y!=16) {
+            if (plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE&&plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE&&plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].x==0&&joueurs[i].y==0) {
+            if (plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].x==16&&joueurs[i].y==0) {
+            if (plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].y==16&&joueurs[i].x==0) {
+            if (plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else if (joueurs[i].y==16&&joueurs[i].x==16) {
+            if (plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE&&plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+        else {
+            if (plateau[joueurs[i].x-1][joueurs[i].y]==MUR_HORIZONTALE&& plateau[joueurs[i].x+1][joueurs[i].y]==MUR_HORIZONTALE && plateau[joueurs[i].x][joueurs[i].y-1]==MUR_VERTICALE && plateau[joueurs[i].x][joueurs[i].y+1]==MUR_VERTICALE ) {
+                *blocage=1;
+                printf("Partie bloquee. Un joueur ne peut plus avancer. \n");
+                *termine=1;
+            }
+        }
+    }
 }

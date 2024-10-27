@@ -8,6 +8,7 @@ int main() {
     int a;
     do {
         fflush(stdin);
+        //Choix du menu
         a= afficherMenu();
         switch (a) {
             case 1:
@@ -22,22 +23,25 @@ int main() {
                 // Affichage du plateau
                 afficherPlateau(plateau);
                 int termine;
+                int blocage=0;
                 int choix2=0;
                 int sauvegarde;
                 srand(time(NULL)); // Initialisation du générateur aléatoire
                 // Boucle principale du jeu qui permet plusieurs tours
-                gestion_partie (&termine,&choix2,&sauvegarde,joueurs,j,plateau,nomFichier);
+                gestion_partie (&termine,&choix2,&sauvegarde,joueurs,j,plateau,nomFichier,&blocage);
                 sleep(1);
                 break;
             case 2:
                  printf("Vous avez choisi : Reprendre une partie sauvegardee\n");
                 // Continuer avec les données chargées
                  reprendrePartie(joueurs, &j, plateau,nomFichier);
-                 gestion_partie (&termine,&choix2,&sauvegarde,joueurs,j,plateau,nomFichier);
+                 // Gestion de la prtie en cours
+                 gestion_partie (&termine,&choix2,&sauvegarde,joueurs,j,plateau,nomFichier,&blocage);
                  sleep(1);
                  break;
             case 3:
                 printf("Vous avez choisi : Afficher l'aide\n");
+                // Affichage de l'aide
                 AfficherAide();
                 sleep(1);
                 break;
@@ -48,6 +52,7 @@ int main() {
                 sleep(1);
                 break;
             case 5:
+                // On quitte le jeu
                 printf("Vous avez choisi : Quitter le jeu\n");
                 sleep(1);
                 break;
