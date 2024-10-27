@@ -10,7 +10,7 @@ int main() {
     initPlateau(plateau);
     Joueur joueurs[MAX_JOUEURS];
 
-    afficherMenu(j);
+    afficherMenu(joueurs,j);
 
     placerPionsSurPlateau(plateau, joueurs,&j);
     // Affichage du plateau vide

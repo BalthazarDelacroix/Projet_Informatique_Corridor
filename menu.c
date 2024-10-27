@@ -9,7 +9,7 @@
 
 
 // Fonction pour afficher le menu et gérer les choix
-void afficherMenu(int j) {
+void afficherMenu(Joueur joueurs[],int j) {
     int choix;
     char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 
@@ -39,7 +39,6 @@ void afficherMenu(int j) {
         case 1:
             printf("Vous avez choisi : Lancer une nouvelle partie\n");
             // Appeler ici la fonction qui démarre une nouvelle partie
-            Joueur joueurs[MAX_JOUEURS];  // Déclaration du tableau de joueurs
             // Appel de la fonction configurerJoueurs avec les parametres requis
             configurerJoueurs(joueurs, &j);
             break;
