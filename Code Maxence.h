@@ -21,7 +21,6 @@
 #include <unistd.h>
 #include <windows.h>
 
-
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
     unsigned char pion;            // Pion du joueur
@@ -51,6 +50,5 @@ void AfficherAide();
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 void changerCouleur(int couleur);
 void reinitialiserCouleur();
-
 
 #endif

@@ -143,7 +143,8 @@ int main() {
                 break;
             case 2:
                  printf("Vous avez choisi : Reprendre une partie sauvegardee\n");
-                 // Appeler ici la fonction qui charge une partie sauvegardee
+                // Continuer avec les données chargées
+
                  sleep(1);
                  break;
 
