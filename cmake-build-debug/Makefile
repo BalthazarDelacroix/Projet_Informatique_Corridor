@@ -128,30 +128,6 @@ projet_info_je_vais_baiser_austin_/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/build
 .PHONY : projet_info_je_vais_baiser_austin_/fast
 
-Deplacement.obj: Deplacement.c.obj
-.PHONY : Deplacement.obj
-
-# target to build an object file
-Deplacement.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.obj
-.PHONY : Deplacement.c.obj
-
-Deplacement.i: Deplacement.c.i
-.PHONY : Deplacement.i
-
-# target to preprocess a source file
-Deplacement.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.i
-.PHONY : Deplacement.c.i
-
-Deplacement.s: Deplacement.c.s
-.PHONY : Deplacement.s
-
-# target to generate assembly for a file
-Deplacement.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.s
-.PHONY : Deplacement.c.s
-
 Fichier_texte.obj: Fichier_texte.c.obj
 .PHONY : Fichier_texte.obj
 
@@ -199,6 +175,30 @@ Logique_IA.s: Logique_IA.c.s
 Logique_IA.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.s
 .PHONY : Logique_IA.c.s
+
+Tour.obj: Tour.c.obj
+.PHONY : Tour.obj
+
+# target to build an object file
+Tour.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Tour.c.obj
+.PHONY : Tour.c.obj
+
+Tour.i: Tour.c.i
+.PHONY : Tour.i
+
+# target to preprocess a source file
+Tour.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Tour.c.i
+.PHONY : Tour.c.i
+
+Tour.s: Tour.c.s
+.PHONY : Tour.s
+
+# target to generate assembly for a file
+Tour.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Tour.c.s
+.PHONY : Tour.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -248,6 +248,30 @@ menu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/menu.c.s
 .PHONY : menu.c.s
 
+partie.obj: partie.c.obj
+.PHONY : partie.obj
+
+# target to build an object file
+partie.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/partie.c.obj
+.PHONY : partie.c.obj
+
+partie.i: partie.c.i
+.PHONY : partie.i
+
+# target to preprocess a source file
+partie.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/partie.c.i
+.PHONY : partie.c.i
+
+partie.s: partie.c.s
+.PHONY : partie.s
+
+# target to generate assembly for a file
+partie.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/partie.c.s
+.PHONY : partie.c.s
+
 plateau.obj: plateau.c.obj
 .PHONY : plateau.obj
 
@@ -281,21 +305,24 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... projet_info_je_vais_baiser_austin_
-	@echo ... Deplacement.obj
-	@echo ... Deplacement.i
-	@echo ... Deplacement.s
 	@echo ... Fichier_texte.obj
 	@echo ... Fichier_texte.i
 	@echo ... Fichier_texte.s
 	@echo ... Logique_IA.obj
 	@echo ... Logique_IA.i
 	@echo ... Logique_IA.s
+	@echo ... Tour.obj
+	@echo ... Tour.i
+	@echo ... Tour.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
 	@echo ... menu.obj
 	@echo ... menu.i
 	@echo ... menu.s
+	@echo ... partie.obj
+	@echo ... partie.i
+	@echo ... partie.s
 	@echo ... plateau.obj
 	@echo ... plateau.i
 	@echo ... plateau.s

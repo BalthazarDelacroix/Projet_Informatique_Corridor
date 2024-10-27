@@ -1,7 +1,8 @@
 //
 
 //
-#include "Code Maxence.h"
+#include "Fichier_texte.h"
+#include "plateau.h"
 
 
 
@@ -152,7 +153,7 @@ void Annulation_Plateau(const char* nomFichier,int*annulation,char plateau[2 * T
                 }
                 // Vérifier si c'est un mur horizontal ou vertical
                 else if (plateau[i][j] == MUR_HORIZONTALE || plateau[i][j] == MUR_VERTICALE) {
-                    changerCouleur(12); // Rouge pour les murs horizontaux
+                    changerCouleur(12); // Rouge pour les murs horizontaux et verticaux
                     printf("%c ", plateau[i][j]);
                     reinitialiserCouleur();
                 }

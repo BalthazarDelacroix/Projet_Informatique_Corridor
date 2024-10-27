@@ -1,4 +1,4 @@
-#include "Code Maxence.h"
+#include "Logique IA.h"
 
 void obj_victoire(Joueur joueurs[],char plateau [2*TAILLE-1] [2*TAILLE-1],int nb_joueurs,int*obj_x, int*obj_y) {
     int i=0;

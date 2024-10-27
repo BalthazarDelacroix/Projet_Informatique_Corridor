@@ -1,5 +1,9 @@
 
-#include "Code Maxence.h"
+#include "partie.h"
+#include "plateau.h"
+#include "menu.h"
+#include "Fichier_texte.h"
+#include "Tour.h"
 
 int main() {
     char plateau[2*TAILLE-1][2*TAILLE-1];

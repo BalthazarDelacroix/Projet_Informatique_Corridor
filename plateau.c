@@ -1,4 +1,4 @@
-#include "Code Maxence.h"
+#include "plateau.h"
 
 
 // Fonction pour changer la couleur du texte
@@ -85,8 +85,8 @@ void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombr
             printf("Emplacement invalide de mur \n");
             erreur = 1;
         }
-        else if ((*typeMur == 'h' && (plateau[*x][*y] == MUR_HORIZONTALE )) || // On verifie si il y a deja un mur
-                 (*typeMur == 'v' && (plateau[*x][*y] == MUR_VERTICALE ))) {
+        else if ((*typeMur == 'h' && (plateau[*x][*y] == MUR_HORIZONTALE) &&  (plateau[*x][*y+1] == MUR_HORIZONTALE) &&  (plateau[*x][*y+2] == MUR_HORIZONTALE )) || // On verifie si il y a deja un mur
+                 (*typeMur == 'v' && (plateau[*x][*y] == MUR_VERTICALE )&& (plateau[*x+1][*y] == MUR_VERTICALE) &&  (plateau[*x+2][*y] == MUR_VERTICALE))) {
             printf("Il y a deja un mur pose.\n");
             erreur = 1;
         }
