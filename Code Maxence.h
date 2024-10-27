@@ -1,4 +1,5 @@
 
+
 #ifndef CODE_MAXENCE_H
 #define CODE_MAXENCE_H
 #include <stdio.h>
@@ -44,6 +45,7 @@ void saisirPionUnique( Joueur joueurs[], int nbJoueurs, int i);
 void saisirNomUnique( Joueur joueurs[], int nbJoueurs, int i);
 int saisirNombreDeJoueurs();
 void AfficherAide();
+void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 
 
 #endif

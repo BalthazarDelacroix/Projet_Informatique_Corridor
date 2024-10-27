@@ -1,3 +1,4 @@
+
 #include "Code Maxence.h"
 #include <time.h>
 #include <stdio.h>
@@ -18,6 +19,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
     int joueursRestants = nombreJoueurs;
 
     while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)){
+        fflush(stdin);
         // Choisir un joueur aléatoirement qui n'a pas encore joué
         int indexJoueur;
         do {
@@ -48,6 +50,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
         // Traiter le choix avec un switch case
         switch (choix) {
+            fflush(stdin);
             // Inclure cette logique de déplacement dans le `case 1` de `jouerTour` pour gérer le déplacement
             case 1: {
                 char direction;

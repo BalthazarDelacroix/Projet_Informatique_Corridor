@@ -1,3 +1,4 @@
+
 #include "Code Maxence.h"
 #include <stdio.h>
 #include <string.h>
@@ -160,7 +161,19 @@ void NombreBarrieres(Joueur joueurs[], int nbJoueurs) {
     }
 
 }
+void Init_score(Joueur joueurs[], int nbJoueurs) {
+    if (nbJoueurs == 2) {
+        for(int i=0;i<nbJoueurs;i++) {
+            joueurs[i].score = 0;
+        }
+    }
+    else if (nbJoueurs == 4) {
 
+        for(int j=0;j<nbJoueurs;j++) {
+            joueurs[j].score = 0; }
+    }
+
+}
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
     // 2. Boucle pour configurer chaque joueur
     for (int i = 0; i < *nbJoueurs; i++) {
@@ -173,17 +186,20 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
         // 5. Choix entre Humain ou IA
         choisirHumainOuIA(joueurs, i);
         NombreBarrieres(joueurs,*nbJoueurs);
+        Init_score(joueurs, *nbJoueurs);
     }
 
     // Affichage de la configuration finale des joueurs
     printf("\nConfiguration des joueurs :\n");
     for (int i = 0; i < *nbJoueurs; i++) {
-        printf("Joueur %d : Nom = %s, Pion = %c, Type = %s, Barrieres = %d\n",
+        printf("Joueur %d : Nom = %s, Pion = %c, Type = %s, Barrieres = %d, Score : %d \n",
                i + 1,
                joueurs[i].nom,
                joueurs[i].pion,
                joueurs[i].estIA ? "IA" : "Humain",
-               joueurs[i].nombreBarrieres);
+               joueurs[i].nombreBarrieres,
+               joueurs[i].score);
+
     }
 
 }
