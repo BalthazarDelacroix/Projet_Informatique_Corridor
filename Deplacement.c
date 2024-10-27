@@ -334,6 +334,9 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
                 NombreBarrieres(joueurs,j);
             }
             else {
+                initPlateau(plateau);
+                placerPionsSurPlateau(plateau,joueurs,&j);
+                NombreBarrieres(joueurs,j);
                 sauvegarderJoueurs(joueurs,j,nomFichier);
 
             }
