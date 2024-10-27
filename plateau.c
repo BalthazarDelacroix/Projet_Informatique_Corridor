@@ -64,7 +64,7 @@ void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombr
     do {
         erreur = 0;  // Réinitialisation de l'erreur pour chaque nouvelle tentative
 
-        printf("Entrez les coordonnees x, y (0 a 14) du mur et sa position (v: verticale ou h: horizontale). Pour une position horizontale, x est impaire et y paire. Pour une position verticale, x est paire et y impaire : \n");
+        printf("Entrez les coordonnees x, y (0 a 15) du mur et sa position (v: verticale ou h: horizontale). Pour une position horizontale, x est impaire et y paire. Pour une position verticale, x est paire et y impaire : \n");
         if (scanf("%d %d %c", &x, &y, &typeMur) != 3) {
             printf("Erreur : veuillez entrer deux entiers suivis d'un caractere ('v' ou 'h').\n");
             erreur = 1;
@@ -73,11 +73,11 @@ void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombr
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
-        else if (x < 0 || x >= 2*TAILLE-3 || y < 0 || y >= 2*TAILLE-3 || (typeMur != 'v' && typeMur != 'h')) {
+        else if (x < 0 || x > 2*TAILLE-3 || y < 0 || y > 2*TAILLE-3 || (typeMur != 'v' && typeMur != 'h')) {
             printf("Coordonnees ou position non valides.\n");
             erreur = 1;
         }
-        else if ((typeMur == 'h' && y > 2*TAILLE-4) || (typeMur == 'v' && x > 2*TAILLE-4)) {
+        else if ((typeMur == 'h' && y > 2*TAILLE-3) || (typeMur == 'v' && x > 2*TAILLE-3)) {
             printf("Emplacement hors plateau pour un mur de type %c.\n", typeMur);
             erreur = 1;
         }

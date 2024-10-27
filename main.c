@@ -142,7 +142,7 @@ int main() {
                 sleep(1);
                 break;
             case 2:
-                 printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
+                 printf("Vous avez choisi : Reprendre une partie sauvegardee\n");
                  // Appeler ici la fonction qui charge une partie sauvegardee
                  sleep(1);
                  break;
