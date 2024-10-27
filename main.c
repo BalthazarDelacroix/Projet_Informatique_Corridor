@@ -7,7 +7,6 @@
 #include <unistd.h>
 
 int main() {
-    int j =saisirNombreDeJoueurs();
     char plateau[2*TAILLE-1][2*TAILLE-1];
     // Initialisation du plateau
     initPlateau(plateau);
@@ -19,6 +18,7 @@ int main() {
         switch (a) {
             case 1:
                 printf("Vous avez choisi : Lancer une nouvelle partie\n");
+                int j =saisirNombreDeJoueurs();
                 // Appeler ici la fonction qui démarre une nouvelle partie
                 // Appel de la fonction configurerJoueurs avec les parametres requis
                 configurerJoueurs(joueurs, &j);
@@ -108,7 +108,7 @@ int main() {
 
                         } while (choix2 != 0 && choix2 != 1); // Boucle tant que l'entrée est incorrecte
                     }
-                    do {
+                    do{
                         fflush(stdin);
                         printf("Souhaitez-vous interrompre la partie (0: non ou 1: oui) ?\n");
 
@@ -119,7 +119,8 @@ int main() {
                                 printf("Erreur: Vous devez entrer 0 pour non ou 1 pour oui.\n");
                                 choix3 = -1; // Réinitialisation de choix2 pour continuer la boucle
                             }
-                        } else {
+                        }
+                        else {
                             // Si fgets échoue, on réinitialise choix pour refaire le choix
                             choix3 = -1;
                         }
@@ -131,7 +132,7 @@ int main() {
                             initPlateau(plateau);
                         }
 
-                    } while (choix2 != 0 && choix2 != 1); // Boucle tant que l'entrée est incorrecte
+                     } while (choix3 != 0 && choix3 != 1); // Boucle tant que l'entrée est incorrecte
 
                     tour ++;
 

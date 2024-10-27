@@ -1,17 +1,25 @@
-
 #include "Code Maxence.h"
 
+
+// Fonction pour changer la couleur du texte
+void changerCouleur(int couleur) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, couleur);
+}
+
+// Fonction pour réinitialiser la couleur du texte
+void reinitialiserCouleur() {
+    changerCouleur(7); // Blanc par défaut sous Windows
+}
 
 // Fonction pour initialiser le plateau (9x9)
 void initPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
     for (int i = 0; i < 2*TAILLE-1; i++) {
         for (int j = 0; j < 2*TAILLE-1; j++) {
-            if (i%2==0&&j%2==0)
-            {
+            if (i % 2 == 0 && j % 2 == 0) {
                 plateau[i][j] = CASE;
-            } // Chaque case est initialisée avec un point
-            else{
-                plateau[i][j]=' ';
+            } else {
+                plateau[i][j] = ' ';
             }
         }
     }
@@ -22,7 +30,22 @@ void afficherPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
     printf("\n");
     for (int i = 0; i < 2*TAILLE-1; i++) {
         for (int j = 0; j < 2*TAILLE-1; j++) {
-            printf("%c ", plateau[i][j]);  // Affiche chaque case du plateau
+            // Vérifier si c'est un pion
+            if (plateau[i][j] != CASE && plateau[i][j] != ' ' && plateau[i][j] != MUR_HORIZONTALE && plateau[i][j] != MUR_VERTICALE ) {
+                changerCouleur(9); // Bleu pour les pions
+                printf("%c ", plateau[i][j]);
+                reinitialiserCouleur();
+            }
+            // Vérifier si c'est un mur horizontal ou vertical
+            else if (plateau[i][j] == MUR_HORIZONTALE || plateau[i][j] == MUR_VERTICALE) {
+                changerCouleur(12); // Rouge pour les murs horizontaux
+                printf("%c ", plateau[i][j]);
+                reinitialiserCouleur();
+            }
+
+            else {
+                printf("%c ", plateau[i][j]);
+            }
         }
         printf("\n");
     }

@@ -170,34 +170,6 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             break;
                     }
 
-                    // Vérifier si un joueur est dans la direction du mouvement et s'il peut être sauté
-                    /*if (deplacementPossible) {
-                        for (int i = 0; i < nombreJoueurs; i++) {
-                            // Si un autre joueur est directement dans la direction du mouvement
-                            if (joueurs[i].x == newX && joueurs[i].y == newY) {
-                                // Calculer la position derrière ce joueur (sauter par-dessus)
-                                int sautX = newX + (newX - joueurActuel->x);  // Deux cases derrière
-                                int sautY = newY + (newY - joueurActuel->y);  // Deux cases derrière
-
-                                // Vérifier si le saut est valide
-                                if (sautX >= 0 && sautX < 2 * TAILLE - 1 && sautY >= 0 && sautY < 2 * TAILLE - 1) {
-                                    if (plateau[sautX][sautY] == CASE) {
-                                        // Effectuer le saut
-                                        plateau[joueurActuel->x][joueurActuel->y] = CASE;  // Effacer la position d'origine
-                                        joueurActuel->x = sautX;
-                                        joueurActuel->y = sautY;
-                                        plateau[sautX][sautY] = joueurActuel->pion;  // Met à jour la nouvelle position
-                                        plateau[newX][newY] = CASE;  // Effacer la position du joueur saute
-                                        printf("%s saute %s et va directement derriere lui.\n", joueurActuel->nom, joueurs[i].nom);
-                                        break;
-                                    } else {
-                                        printf("Impossible de sauter : la case est occupee.\n");
-                                        deplacementPossible = 0;
-                                    }
-                                }
-                            }
-                        }
-                    }*/
 
                     // Déplacer le joueur si le déplacement est possible
                     if (deplacementPossible) {
