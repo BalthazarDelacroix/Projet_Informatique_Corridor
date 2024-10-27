@@ -49,7 +49,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
             case 1: {
                 char direction;
                 printf("%s choisit de se deplacer.\n", joueurActuel->nom);
-                while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd'){
+                do {
                     printf("Dans quelle direction souhaitez-vous vous deplacer ?\n"
                            "(z = Haut)\n"
                            "(s = Bas)\n"
@@ -59,7 +59,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                     if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
                         printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
                     }
-                }
+                }while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
                 switch (direction){
                     case 'z':
                         joueurActuel->y++;
