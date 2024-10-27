@@ -33,7 +33,7 @@ void sauvegarderJoueurs(Joueur joueurs[], int nbJoueurs, const char* nomFichier)
 void afficherNomsEtScores(const char* nomFichier) {
     FILE* fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
-        perror("Erreur d'ouverture du fichier");
+        perror("Erreur ouverture du fichier");
         return;
     }
 
@@ -52,7 +52,7 @@ void afficherNomsEtScores(const char* nomFichier) {
 void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2*TAILLE-1], int* dernierTour, const char* nomFichier) {
     FILE* fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
-        perror("Erreur d'ouverture du fichier");
+        perror("Erreur ouverture du fichier");
         return;
     }
 
@@ -79,15 +79,15 @@ void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2
     // Charger le dernier tour
     fscanf(fichier, "%d", dernierTour);
     printf("Partie reprise !\n");
-    printf("État des joueurs :\n");
+    printf("Etat des joueurs :\n");
     for (int i = 0; i < *nbJoueurs; i++) {
         printf("Nom : %s, Pion : %c, Score : %d, Position : (%d, %d)\n",
                joueurs[i].nom, joueurs[i].pion, joueurs[i].score, joueurs[i].x, joueurs[i].y);
     }
-    printf("État du plateau :\n");
+    printf("Etat du plateau :\n");
     for (int i = 0; i <2*TAILLE-1 ; i++) {
         for (int j = 0; j < 2*TAILLE-1; j++) {
-            printf("%d ", plateau[i][j]);
+            printf("%c ", plateau[i][j]);
         }
         printf("\n");
 

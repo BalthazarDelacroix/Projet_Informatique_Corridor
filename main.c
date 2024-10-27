@@ -6,6 +6,7 @@ int main() {
     Joueur joueurs[MAX_JOUEURS];
     const char* nomFichier = "Partie.txt";
     int a;
+    int tour2;
     do {
         fflush(stdin);
         a= afficherMenu();
@@ -21,11 +22,11 @@ int main() {
                 placerPionsSurPlateau(plateau, joueurs,&j);
                 // Affichage du plateau
                 afficherPlateau(plateau);
-                srand(time(NULL)); // Initialisation du générateur aléatoire
                 int tour = 1;
                 int termine;
                 int choix2=0;
                 int sauvegarde;
+                srand(time(NULL)); // Initialisation du générateur aléatoire
                 // Boucle principale du jeu qui permet plusieurs tours
                 do {
                     termine = 0;
@@ -39,6 +40,7 @@ int main() {
                         interrompre_partie(&termine,&sauvegarde);
                         if (sauvegarde==1) {
                             sauvegarderJoueurs(joueurs,j,nomFichier);
+                            tour2 = tour+1;
                         }
                     }
                     if (termine == 1) {//rejouer une nouvelle partie ?
@@ -52,6 +54,7 @@ int main() {
                             }
                             else {
                                 sauvegarderJoueurs(joueurs,j,nomFichier);
+                                tour2=tour+1;
                             }
                     }
                     tour ++;
@@ -61,6 +64,36 @@ int main() {
             case 2:
                  printf("Vous avez choisi : Reprendre une partie sauvegardee\n");
                 // Continuer avec les données chargées
+                 reprendrePartie(joueurs, &j, plateau, &tour2,nomFichier);
+            do {
+                termine = 0;
+                printf("\n----- Tour %d -----\n", tour2);
+                // Appel de la fonction pour gérer le tour de chaque joueur
+                jouerTour(joueurs, j, plateau);
+                //Appel du sous-programme qui gere le gagnant de la partie
+                gagnant (joueurs,j,& termine);
+                //Gestion interruption partie
+                if (termine==0) { //Interruption de la partie ?
+                    interrompre_partie(&termine,&sauvegarde);
+                    if (sauvegarde==1) {
+                        sauvegarderJoueurs(joueurs,j,nomFichier);
+                    }
+                }
+                if (termine == 1) {//rejouer une nouvelle partie ?
+                    rejouer_partie(&termine,&choix2);
+                    // Ce bloc doit être exécuté si choix2 est égal à 1
+                    if (choix2 == 1) {
+                        tour = 0;//Reinitialise les tours
+                        initPlateau(plateau);//Reinitialise le plateau
+                        placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
+                        afficherPlateau(plateau);
+                    }
+                    else {
+                        sauvegarderJoueurs(joueurs,j,nomFichier);
+                    }
+                }
+                tour ++;
+            }while(termine == 0);
                  sleep(1);
                  break;
             case 3:
