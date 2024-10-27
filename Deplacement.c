@@ -192,7 +192,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
                 placerMur(plateau, joueurs, nombreJoueurs);  // placement murs
                 joueurActuel->nombreBarrieres--;
-                printf("Il vous reste %d barrieres",joueurActuel->nombreBarrieres);
+                printf("Il vous reste %d barrieres. \n",joueurActuel->nombreBarrieres);
                 break;
             default:
                 printf("Erreur inattendue.\n");
