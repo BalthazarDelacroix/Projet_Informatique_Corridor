@@ -55,6 +55,6 @@ void interrompre_partie(int*termine,int*sauvegarde);
 void rejouer_partie (int*termine,int*choix2);
 void sauvegarderJoueurs(Joueur joueurs[], int nbJoueurs, const char* nomFichier);
 void afficherNomsEtScores(const char* nomFichier);
-void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2*TAILLE-1], int* dernierTour, const char* nomFichier);
-
+void reprendrePartie(Joueur joueurs[], int* nbJoueurs, char plateau[2*TAILLE-1][2*TAILLE-1], const char* nomFichier);
+void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],int j,char plateau [2*TAILLE-1][2*TAILLE-1],const char*nomFichier);
 #endif

@@ -49,7 +49,7 @@ void afficherNomsEtScores(const char* nomFichier) {
 }
 
 // Fonction pour charger une partie sauvegardée
-void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2*TAILLE-1], int* dernierTour, const char* nomFichier) {
+void reprendrePartie(Joueur joueurs[], int* nbJoueurs, char plateau[2*TAILLE-1][2*TAILLE-1], const char* nomFichier) {
     FILE* fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
         perror("Erreur ouverture du fichier");
@@ -75,9 +75,7 @@ void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2
                   &joueurs[*nbJoueurs].y) == 7) {
         (*nbJoueurs)++;
                   }
-
     // Charger le dernier tour
-    fscanf(fichier, "%d", dernierTour);
     printf("Partie reprise !\n");
     printf("Etat des joueurs :\n");
     for (int i = 0; i < *nbJoueurs; i++) {
@@ -85,15 +83,31 @@ void reprendrePartie(Joueur joueurs[], int* nbJoueurs, int plateau[2*TAILLE-1][2
                joueurs[i].nom, joueurs[i].pion, joueurs[i].score, joueurs[i].x, joueurs[i].y);
     }
     printf("Etat du plateau :\n");
-    for (int i = 0; i <2*TAILLE-1 ; i++) {
+    for (int i = 0; i < 2*TAILLE-1; i++) {
         for (int j = 0; j < 2*TAILLE-1; j++) {
-            printf("%c ", plateau[i][j]);
+            // Vérifier si c'est un pion
+            if (plateau[i][j] != CASE && plateau[i][j] != ' ' && plateau[i][j] != MUR_HORIZONTALE && plateau[i][j] != MUR_VERTICALE ) {
+                changerCouleur(9); // Bleu pour les pions
+                printf("%c ", plateau[i][j]);
+                reinitialiserCouleur();
+            }
+            // Vérifier si c'est un mur horizontal ou vertical
+            else if (plateau[i][j] == MUR_HORIZONTALE || plateau[i][j] == MUR_VERTICALE) {
+                changerCouleur(12); // Rouge pour les murs horizontaux
+                printf("%c ", plateau[i][j]);
+                reinitialiserCouleur();
+            }
+
+            else {
+                printf("%c ", plateau[i][j]);
+            }
         }
         printf("\n");
-
-        fclose(fichier);
     }
-}
+
+    fclose(fichier);
+    }
+
 
 
 

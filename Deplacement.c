@@ -308,3 +308,33 @@ void rejouer_partie (int*termine,int*choix2) {
 
     } while (choix != 0 && choix != 1); // Boucle tant que l'entrée est incorrecte
 }
+void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],int j,char plateau [2*TAILLE-1][2*TAILLE-1],const char*nomFichier){
+    do {
+        *termine = 0;
+        printf("\n----- Tour suivant -----\n");
+        // Appel de la fonction pour gérer le tour de chaque joueur
+        jouerTour(joueurs, j, plateau);
+        //Appel du sous-programme qui gere le gagnant de la partie
+        gagnant (joueurs,j,termine);
+        //Gestion interruption partie
+        if (*termine==0) { //Interruption de la partie ?
+            interrompre_partie(termine,sauvegarde);
+            if (*sauvegarde==1) {
+                sauvegarderJoueurs(joueurs,j,nomFichier);
+            }
+        }
+        if (*termine == 1) {//rejouer une nouvelle partie ?
+            rejouer_partie(termine,choix2);
+            // Ce bloc doit être exécuté si choix2 est égal à 1
+            if (*choix2 == 1) {
+                initPlateau(plateau);//Reinitialise le plateau
+                placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
+                afficherPlateau(plateau);
+            }
+            else {
+                sauvegarderJoueurs(joueurs,j,nomFichier);
+
+            }
+        }
+    }while(*termine == 0);
+}
