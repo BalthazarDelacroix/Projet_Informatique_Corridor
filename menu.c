@@ -173,6 +173,19 @@ void choisirHumainOuIA(Joueur joueurs[], int i) {
     // Assigner le choix à la structure joueur
     joueurs[i].estIA = (choix == 1);
 }
+void NombreBarrieres(Joueur joueurs[], int nbJoueurs) {
+    if (nbJoueurs == 2) {
+        for(int i=0;i<nbJoueurs;i++) {
+            joueurs[i].nombreBarrieres = 10;
+        }
+    }
+    else if (nbJoueurs == 4) {
+
+        for(int j=0;j<nbJoueurs;j++) {
+            joueurs[j].nombreBarrieres = 5; }
+    }
+
+}
 
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
     // 2. Boucle pour configurer chaque joueur
@@ -185,16 +198,18 @@ void configurerJoueurs(Joueur joueurs[], int *nbJoueurs) {
 
         // 5. Choix entre Humain ou IA
         choisirHumainOuIA(joueurs, i);
+        NombreBarrieres(joueurs,*nbJoueurs);
     }
 
     // Affichage de la configuration finale des joueurs
     printf("\nConfiguration des joueurs :\n");
     for (int i = 0; i < *nbJoueurs; i++) {
-        printf("Joueur %d : Nom = %s, Pion = %c, Type = %s\n",
+        printf("Joueur %d : Nom = %s, Pion = %c, Type = %s, Barrieres = %d\n",
                i + 1,
                joueurs[i].nom,
                joueurs[i].pion,
-               joueurs[i].estIA ? "IA" : "Humain");
+               joueurs[i].estIA ? "IA" : "Humain",
+               joueurs[i].nombreBarrieres);
     }
 
 }
