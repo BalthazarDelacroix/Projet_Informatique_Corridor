@@ -1,18 +1,4 @@
 
 
-        reprendrePartie(joueurs, &nbJoueurs, plateau, &dernierTour, nomFichier);
-        printf("Partie reprise !\n");
-        printf("État des joueurs :\n");
-        for (int i = 0; i < nbJoueurs; i++) {
-            printf("Nom : %s, Pion : %c, Score : %d, Position : (%d, %d)\n",
-                   joueurs[i].nom, joueurs[i].pion, joueurs[i].score, joueurs[i].x, joueurs[i].y);
-        }
-        printf("État du plateau :\n");
-        for (int i = 0; i < TAILLE_PLATEAU; i++) {
-            for (int j = 0; j < TAILLE_PLATEAU; j++) {
-                printf("%d ", plateau[i][j]);
-            }
-            printf("\n");
-        }
 
 

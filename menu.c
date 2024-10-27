@@ -38,11 +38,6 @@ int afficherMenu() {
     return choix;
 }
 
-
-
-
-
-
 int saisirNombreDeJoueurs() {
     int nbJoueurs;
     char buffer[10]; // Buffer pour capturer l'entrée
