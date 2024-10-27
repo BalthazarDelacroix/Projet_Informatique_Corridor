@@ -192,6 +192,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
                 placerMur(plateau, joueurs, nombreJoueurs);  // placement murs
                 joueurActuel->nombreBarrieres--;
+                printf("Il vous reste %d barrieres",joueurActuel->nombreBarrieres);
                 break;
             default:
                 printf("Erreur inattendue.\n");
@@ -330,6 +331,7 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
                 initPlateau(plateau);//Reinitialise le plateau
                 placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
                 afficherPlateau(plateau);
+                NombreBarrieres(joueurs,j);
             }
             else {
                 sauvegarderJoueurs(joueurs,j,nomFichier);
