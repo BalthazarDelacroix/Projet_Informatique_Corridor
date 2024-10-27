@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.obj"
   "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.obj.d"
+  "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Fichier_texte.c.obj"
+  "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Fichier_texte.c.obj.d"
   "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.obj"
   "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Logique_IA.c.obj.d"
   "CMakeFiles/projet_info_je_vais_baiser_austin_.dir/main.c.obj"

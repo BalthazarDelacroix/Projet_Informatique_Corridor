@@ -190,7 +190,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                 break;
             case 4:
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
-                placerMur(plateau, joueurs, nombreJoueurs);  // Corrigé
+                placerMur(plateau, joueurs, nombreJoueurs);  // placement murs
                 joueurActuel->nombreBarrieres--;
                 break;
             default:
@@ -248,7 +248,7 @@ void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
                             }
                     }
 }
-void interrompre_partie(int*termine) {
+void interrompre_partie(int*termine,int*sauvegarde) {
     char buffer [10];
     int choix;
     do{
@@ -271,6 +271,7 @@ void interrompre_partie(int*termine) {
         // Ce bloc doit être exécuté si choix2 est égal à 1
         if (choix == 1) {
             *termine = 2;
+            *sauvegarde = 1;
             printf("La partie a ete interrompue. \n");
         }
 

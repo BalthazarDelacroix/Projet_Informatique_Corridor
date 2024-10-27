@@ -4,6 +4,7 @@
 int main() {
     char plateau[2*TAILLE-1][2*TAILLE-1];
     Joueur joueurs[MAX_JOUEURS];
+    const char* nomFichier = "Partie.txt";
     int a;
     do {
         fflush(stdin);
@@ -23,7 +24,8 @@ int main() {
                 srand(time(NULL)); // Initialisation du générateur aléatoire
                 int tour = 1;
                 int termine;
-                int choix2;
+                int choix2=0;
+                int sauvegarde;
                 // Boucle principale du jeu qui permet plusieurs tours
                 do {
                     termine = 0;
@@ -34,7 +36,10 @@ int main() {
                     gagnant (joueurs,j,& termine);
                     //Gestion interruption partie
                     if (termine==0) { //Interruption de la partie ?
-                        interrompre_partie(&termine);
+                        interrompre_partie(&termine,&sauvegarde);
+                        if (sauvegarde==1) {
+                            sauvegarderJoueurs(joueurs,j,nomFichier);
+                        }
                     }
                     if (termine == 1) {//rejouer une nouvelle partie ?
                             rejouer_partie(&termine,&choix2);
@@ -44,6 +49,9 @@ int main() {
                                 initPlateau(plateau);//Reinitialise le plateau
                                 placerPionsSurPlateau(plateau, joueurs, &j);//Replace les pions
                                 afficherPlateau(plateau);
+                            }
+                            else {
+                                sauvegarderJoueurs(joueurs,j,nomFichier);
                             }
                     }
                     tour ++;
@@ -63,6 +71,7 @@ int main() {
             case 4:
                 printf("Vous avez choisi : Afficher les scores des joueurs\n");
                 // Appeler ici la fonction qui affiche les scores
+                afficherNomsEtScores(nomFichier);
                 sleep(1);
                 break;
             case 5:

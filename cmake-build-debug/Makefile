@@ -152,6 +152,30 @@ Deplacement.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Deplacement.c.s
 .PHONY : Deplacement.c.s
 
+Fichier_texte.obj: Fichier_texte.c.obj
+.PHONY : Fichier_texte.obj
+
+# target to build an object file
+Fichier_texte.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Fichier_texte.c.obj
+.PHONY : Fichier_texte.c.obj
+
+Fichier_texte.i: Fichier_texte.c.i
+.PHONY : Fichier_texte.i
+
+# target to preprocess a source file
+Fichier_texte.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Fichier_texte.c.i
+.PHONY : Fichier_texte.c.i
+
+Fichier_texte.s: Fichier_texte.c.s
+.PHONY : Fichier_texte.s
+
+# target to generate assembly for a file
+Fichier_texte.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\projet_info_je_vais_baiser_austin_.dir\build.make CMakeFiles/projet_info_je_vais_baiser_austin_.dir/Fichier_texte.c.s
+.PHONY : Fichier_texte.c.s
+
 Logique_IA.obj: Logique_IA.c.obj
 .PHONY : Logique_IA.obj
 
@@ -260,6 +284,9 @@ help:
 	@echo ... Deplacement.obj
 	@echo ... Deplacement.i
 	@echo ... Deplacement.s
+	@echo ... Fichier_texte.obj
+	@echo ... Fichier_texte.i
+	@echo ... Fichier_texte.s
 	@echo ... Logique_IA.obj
 	@echo ... Logique_IA.i
 	@echo ... Logique_IA.s

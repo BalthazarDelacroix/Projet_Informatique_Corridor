@@ -8,4 +8,6 @@ add_executable(projet_info_je_vais_baiser_austin_ main.c
         plateau.c
         "Code Maxence.h"
         "Logique IA.c"
-        Deplacement.c)
+        Deplacement.c
+        Fichier_texte.c
+)
