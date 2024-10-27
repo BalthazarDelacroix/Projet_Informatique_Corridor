@@ -32,6 +32,8 @@ typedef struct {
     int y; // Position en y
 } Joueur;
 
+
+
 void jouerTour( Joueur joueurs[], int nombreJoueurs,char plateau[2*TAILLE-1][2*TAILLE-1]);
 int nombreAleatoire(int min, int max);
 void placerPionsSurPlateau(char plateau[2*TAILLE-1][2*TAILLE-1],  Joueur joueurs[], int *nbJoueurs);
@@ -47,6 +49,8 @@ void saisirNomUnique( Joueur joueurs[], int nbJoueurs, int i);
 int saisirNombreDeJoueurs();
 void AfficherAide();
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
+void changerCouleur(int couleur);
+void reinitialiserCouleur();
 
 
 #endif

@@ -37,6 +37,7 @@ int main() {
                 do {
                     termine = 0;
                     printf("\n----- Tour %d -----\n", tour);
+
                     // Appel de la fonction pour gérer le tour de chaque joueur
                     jouerTour(joueurs, j, plateau);
                     if (j==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0)) {

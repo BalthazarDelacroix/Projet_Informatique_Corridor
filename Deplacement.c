@@ -1,8 +1,6 @@
-
 #include "Code Maxence.h"
-#include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
+
+
 // Fonction pour générer un nombre aléatoire entre min et max (inclus)
 int nombreAleatoire(int min, int max) {
     return rand() % (max - min + 1) + min;
