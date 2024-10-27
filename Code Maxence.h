@@ -47,7 +47,7 @@ int saisirNombreDeJoueurs();//Choix nombre de joueurs
 void AfficherAide();//Aide
 void changerCouleur(int couleur);//Change la couleur
 void reinitialiserCouleur();//Remet la couleur par defaut
-void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine);//Verifie si un joueur a gagne
+void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine, int* blocage);//Verifie si un joueur a gagne
 void interrompre_partie(int*termine,int*sauvegarde);//Interruption partie
 void rejouer_partie (int*termine,int*choix2);//Choix de rejouer partie ou non
 void sauvegarderJoueurs(Joueur joueurs[], int nbJoueurs, const char* nomFichier);// Sauvegarde partie, joueurs, plateau

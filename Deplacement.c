@@ -217,7 +217,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
     }
 }
-void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
+void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine,int* blocage) {
     //On verifie si pour 4 joeurs, l'un d'entre eux à gagner
     if (nombreJoueurs==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0)) {
                         if (joueurs[0].y == 16) {
@@ -225,24 +225,28 @@ void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
                             joueurs[0].score += 5;
                             printf("%s a %d points. \n",joueurs[0].nom,joueurs[0].score);
                             *termine = 1;
+                            *blocage=1;
                         }
                         else if (joueurs[1].y == 0) {
                             printf("%s a gagne la partie. \n",joueurs[1].nom);
                             joueurs[1].score += 5;
                             printf("%s a %d points. \n",joueurs[1].nom,joueurs[1].score);
                             *termine = 1;
+                            *blocage=1;
                         }
                         else if (joueurs[2].x == 16) {
                             printf("%s a gagne la partie. \n",joueurs[2].nom);
                             joueurs[2].score += 5;
                             printf("%s a %d points. \n",joueurs[2].nom,joueurs[2].score);
                             *termine = 1;
+                            *blocage=1;
                         }
                         else if (joueurs[3].x == 16) {
                             printf("%s a gagne la partie. \n",joueurs[3].nom);
                             joueurs[3].score += 5;
                             printf("%s a %d points. \n",joueurs[3].nom,joueurs[3].score);
                             *termine = 1;
+                            *blocage=1;
                         }
                     } // On verifie si pour 2 joueurs, l'un d'entre eux a gagné
                     else if (nombreJoueurs==2 &&(joueurs[0].y == 16 || joueurs[1].y == 0)) {
@@ -251,12 +255,14 @@ void gagnant (Joueur joueurs[], int nombreJoueurs,int* termine) {
                             joueurs[0].score += 5;
                             printf("%s a %d points. \n",joueurs[0].nom,joueurs[0].score);
                             *termine = 1;
+                            *blocage =1;
                             }
                             else if (joueurs[1].y == 0) {
                              printf("%s a gagne la partie. \n",joueurs[1].nom);
                              joueurs[1].score += 5;
                              printf("%s a %d points. \n",joueurs[1].nom,joueurs[1].score);
                              *termine = 1;
+                             *blocage=1;
                             }
                     }
 }
@@ -327,7 +333,7 @@ void gestion_partie (int *termine,int *choix2,int *sauvegarde,Joueur joueurs[],i
         // Appel de la fonction pour gérer le tour de chaque joueur
         jouerTour(joueurs, j, plateau,nomFichier,blocage,termine);
         //Appel du sous-programme qui gere le gagnant de la partie
-        gagnant (joueurs,j,termine);
+        gagnant (joueurs,j,termine,blocage);
         //Gestion interruption partie
         if (*termine==0||*blocage==0) { //Interruption de la partie ?
             interrompre_partie(termine,sauvegarde);
