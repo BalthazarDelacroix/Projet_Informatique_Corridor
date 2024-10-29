@@ -38,11 +38,11 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
             printf("Votre choix (1-4) : ");
             scanf("%d", &choix);
 
-            // Vérification que le choix est bien entre 1 et 4
-            if (choix < 1 || choix > 4) {
-                printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            // Vérification que le choix est bien entre 1 et 4.
+            if (choix != 1 && choix != 2 && choix != 3 && choix != 4) {
+                printf("Choix invalide. Veuillez choisir une option disponible.\n");
             }
-        } while (choix < 1 || choix > 4);
+        } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
 
         // Traiter le choix avec un switch case
         switch (choix) {
@@ -59,7 +59,8 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                     if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
                         printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
                     }
-                }while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
+                }
+                while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
                 switch (direction){
                     case 'z':
                         joueurActuel->y++;
@@ -89,7 +90,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                     joueurActuel->nombreBarrieres--;
                     // Logique pour placer un mur ici
                 } else {
-                    printf("%s ne possede plus de barrieres disponibles !\n", joueurActuel->nom);
+                    printf("%s ne possede plus de barrieres disponibles ! \n", joueurActuel->nom);
                 }
                 break;
             default:
