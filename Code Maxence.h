@@ -14,7 +14,7 @@
 
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
-    unsigned char pion;            // Pion du joueur
+    unsigned char pion;   // Pion du joueur
     int estIA;
     int nombreBarrieres; // Nombre de barrieres pour chaque joueur
     int score;  // Score du joueur

@@ -63,16 +63,36 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs) {
                 while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
                 switch (direction){
                     case 'z':
-                        joueurActuel->y++;
+                        if ((joueurActuel->y = 0)) {
+                            printf("Vous ne pouvez pas monter plus haut");
+                        }
+                        else {
+                            joueurActuel->y++;
+                        };
                         break;
                     case 's':
-                        joueurActuel->y--;
+                        if ((joueurActuel->y = TAILLE)) {
+                            printf("Vous ne pouvez pas descendre plus bas");
+                        }
+                        else {
+                            joueurActuel->y--;
+                        };
                         break;
                     case 'q':
-                        joueurActuel->x--;
+                        if ((joueurActuel->y = 0)) {
+                            printf("Vous ne pouvez pas aller plus a gauche");
+                        }
+                        else {
+                            joueurActuel->x--;
+                        };
                         break;
                     case 'd':
-                        joueurActuel->x++;
+                        if ((joueurActuel->y = 0)) {
+                            printf("Vous ne pouvez pas aller plus a droite");
+                        }
+                        else {
+                            joueurActuel->x++;
+                        };
                         break;
                 }
                 break;
