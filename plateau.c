@@ -29,69 +29,61 @@ void afficherPlateau(char plateau[TAILLE][TAILLE]) {
 void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nombreDeJoueurs) {
     int x, y;
     char typeMur;
+    int erreur;
 
     do {
+        erreur = 0;  // Réinitialisation de l'erreur pour chaque nouvelle tentative
+
         printf("Entrez les coordonnees (x, y) du mur et sa position (v: verticale ou h: horizontale) : \n");
         if (scanf("%d %d %c", &x, &y, &typeMur) != 3) {
             printf("Erreur : veuillez entrer deux entiers suivis d'un caractere ('v' ou 'h').\n");
+            erreur = 1;
 
             // Vider le buffer
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
-            continue;
         }
-
-        // Vérification des limites
-        if (x < 0 || x >= TAILLE || y < 0 || y >= TAILLE || (typeMur != 'v' && typeMur != 'h')) {
+        else if (x < 0 || x >= TAILLE || y < 0 || y >= TAILLE || (typeMur != 'v' && typeMur != 'h')) {
             printf("Coordonnees ou position non valides.\n");
-            continue;  // Redemande de nouvelles coordonnées
+            erreur = 1;
         }
-
-        // Vérification d’emplacement sur les bords
-        if ((typeMur == 'h' && y >= TAILLE - 1) || (typeMur == 'v' && x >= TAILLE - 1)) {
+        else if ((typeMur == 'h' && y >= TAILLE - 1) || (typeMur == 'v' && x >= TAILLE - 1)) {
             printf("Emplacement hors plateau pour un mur de type %c.\n", typeMur);
-            continue;
+            erreur = 1;
         }
-
-        // Vérification de la présence d’un mur
-        if ((typeMur == 'h' && (plateau[x][y] == MUR || plateau[x][y + 1] == MUR)) ||
-            (typeMur == 'v' && (plateau[x][y] == MUR || plateau[x + 1][y] == MUR))) {
+        else if ((typeMur == 'h' && (plateau[x][y] == MUR || plateau[x][y + 1] == MUR)) ||
+                 (typeMur == 'v' && (plateau[x][y] == MUR || plateau[x + 1][y] == MUR))) {
             printf("Il y a deja un mur pose.\n");
-            continue;
+            erreur = 1;
         }
-
-        // Réinitialiser l’indicateur de validité
-        int emplacementValide = 1;
-
-        // Vérification de chevauchement avec les pions de chaque joueur
-        for (int i = 0; i < nombreDeJoueurs; i++) {
-            if ((typeMur == 'h' && (plateau[x][y] == joueurs[i].pion || plateau[x][y + 1] == joueurs[i].pion)) ||
-                (typeMur == 'v' && (plateau[x][y] == joueurs[i].pion || plateau[x + 1][y] == joueurs[i].pion))) {
-                emplacementValide = 0;
-                printf("Emplacement invalide: le mur chevauche le pion du joueur %d.\n", i + 1);
-                break;  // Sort de la boucle si un chevauchement est détecté
+        else {
+            // Vérification de chevauchement avec les pions de chaque joueur
+            for (int i = 0; i < nombreDeJoueurs; i++) {
+                if ((typeMur == 'h' && (plateau[x][y] == joueurs[i].pion || plateau[x][y + 1] == joueurs[i].pion)) ||
+                    (typeMur == 'v' && (plateau[x][y] == joueurs[i].pion || plateau[x + 1][y] == joueurs[i].pion))) {
+                    printf("Emplacement invalide: le mur chevauche le pion du joueur %d.\n", i + 1);
+                    erreur = 1;
+                    break;  // Sortir de la boucle dès qu'un pion est détecté
+                }
             }
         }
 
-        if (!emplacementValide) {
-            continue;  // Redemande de nouvelles coordonnées si chevauchement avec un pion
+        // Placement du mur si toutes les vérifications ont été passées
+        if (erreur == 0) {
+            if (typeMur == 'h') {
+                plateau[x][y] = MUR;
+                plateau[x][y + 1] = MUR;
+                printf("Mur horizontal place en (%d, %d) et (%d, %d).\n", x, y, x, y + 1);
+            } else if (typeMur == 'v') {
+                plateau[x][y] = MUR;
+                plateau[x + 1][y] = MUR;
+                printf("Mur vertical place en (%d, %d) et (%d, %d).\n", x, y, x + 1, y);
+            }
         }
 
-        // Placement du mur si toutes les conditions sont validées
-        if (typeMur == 'h') {
-            plateau[x][y] = MUR;
-            plateau[x][y + 1] = MUR;
-            printf("Mur horizontal place en (%d, %d) et (%d, %d).\n", x, y, x, y + 1);
-        } else if (typeMur == 'v') {
-            plateau[x][y] = MUR;
-            plateau[x + 1][y] = MUR;
-            printf("Mur vertical place en (%d, %d) et (%d, %d).\n", x, y, x + 1, y);
-        }
-
-        break;  // Sort de la boucle si le mur est placé
-
-    } while (1);  // Continue jusqu'à ce qu'un mur valide soit placé
+    } while (erreur != 0);  // Répéter tant qu'il y a une erreur
 }
+
 
 
 void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int *nbJoueurs) {

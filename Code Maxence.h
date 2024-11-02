@@ -8,6 +8,8 @@
 #define TAILLE 9
 #define MUR 'o'  // Représente un mur
 #define VIDE '.'  // Représente une case vide
+#define MUR_HORIZONTALE '-'
+#define MUR_VERTICALE '|'
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
