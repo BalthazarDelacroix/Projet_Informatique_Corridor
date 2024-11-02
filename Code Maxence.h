@@ -30,7 +30,7 @@ void afficherPlateau(char plateau[TAILLE][TAILLE]);
 void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[]);
 void configurerJoueurs(Joueur joueurs[], int *nbJoueurs);
 void NombreBarrieres(Joueur joueurs[], int nbJoueurs);
-void afficherMenu(Joueur joueurs[],int j);
+int afficherMenu(Joueur joueurs[],int j);
 void choisirHumainOuIA(Joueur joueurs[], int i);
 void saisirPionUnique(Joueur joueurs[], int nbJoueurs, int i);
 void saisirNomUnique(Joueur joueurs[], int nbJoueurs, int i);

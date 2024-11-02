@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main() {
     int j =saisirNombreDeJoueurs();
@@ -9,49 +10,70 @@ int main() {
     // Initialisation du plateau
     initPlateau(plateau);
     Joueur joueurs[MAX_JOUEURS];
+    int a;
+    do {
+        a= afficherMenu(joueurs,j);
+        switch (a) {
+            case 1:
+                printf("Vous avez choisi : Lancer une nouvelle partie\n");
+                // Appeler ici la fonction qui démarre une nouvelle partie
+                // Appel de la fonction configurerJoueurs avec les parametres requis
+                configurerJoueurs(joueurs, &j);
+                placerPionsSurPlateau(plateau, joueurs,&j);
+                // Affichage du plateau vide
+                afficherPlateau(plateau);
 
-    afficherMenu(joueurs,j);
-
-    placerPionsSurPlateau(plateau, joueurs,&j);
-    // Affichage du plateau vide
-    afficherPlateau(plateau);
-
-    srand(time(NULL)); // Initialisation du générateur aléatoire
+                srand(time(NULL)); // Initialisation du générateur aléatoire
 
 
-    int continuer = 1;
-    int tour = 1;
+                int continuer = 1;
+                int tour = 1;
+                // Boucle principale du jeu qui permet plusieurs tours
+                while (continuer) {
+                    printf("\n----- Tour %d -----\n", tour);
+                    // Appel de la fonction pour gérer le tour de chaque joueur
+                    jouerTour(joueurs, j, plateau);
 
-    // Boucle principale du jeu qui permet plusieurs tours
-    while (continuer) {
-        printf("\n----- Tour %d -----\n", tour);
-        // Appel de la fonction pour gérer le tour de chaque joueur
-        jouerTour(joueurs, j, plateau);
+                    // Demander si l'utilisateur souhaite continuer un nouveau tour
+                    printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
+                    scanf("%d", &continuer);
 
-        // Demander si l'utilisateur souhaite continuer un nouveau tour
-        printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
-        scanf("%d", &continuer);
+                    if (continuer) {
+                     tour++;  // Incrémenter le numéro du tour
+                }
+            }
+                sleep(1);
+                break;
+            case 2:
+                 printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
+                 // Appeler ici la fonction qui charge une partie sauvegardee
+                 sleep(1);
+                 break;
 
-        if (continuer) {
-            tour++;  // Incrémenter le numéro du tour
+            case 3:
+                printf("Vous avez choisi : Afficher l'aide\n");
+                AfficherAide();
+                sleep(1);
+                break;
+            case 4:
+                printf("Vous avez choisi : Afficher les scores des joueurs\n");
+                // Appeler ici la fonction qui affiche les scores
+                sleep(1);
+                break;
+            case 5:
+                printf("Vous avez choisi : Quitter le jeu\n");
+                sleep(1);
+                break;
+
         }
-    }
-
-    printf("Merci d'avoir joue !\n");
+    }while(a!=5);
 
 
 
-    // Pose des murs (exemple d'interaction)
-    int x, y;
-    char typeMur;
 
-    // Exemple de boucle pour poser 3 murs
-    for (int i = 0; i < 10; i++) {
-        printf("Entrez les coordonnees pour placer un mur (x y) et le type de mur ('v' pour vertical, 'h' pour horizontal) : ");
-        scanf("%d %d %c", &x, &y, &typeMur);
+        printf("Merci d'avoir joue !\n");
+        sleep(3);
 
-        placerMur(plateau, joueurs);
-        afficherPlateau(plateau);  // Réafficher le plateau après la pose d'un mur
-    }
-    return 0;
+        return 0;
+
 }

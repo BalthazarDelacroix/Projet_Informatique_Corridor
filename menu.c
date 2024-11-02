@@ -1,7 +1,6 @@
 #include "Code Maxence.h"
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include <stdlib.h>
 
 
@@ -9,7 +8,7 @@
 
 
 // Fonction pour afficher le menu et gérer les choix
-void afficherMenu(Joueur joueurs[],int j) {
+int afficherMenu(Joueur joueurs[],int j) {
     int choix;
     char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 
@@ -34,33 +33,8 @@ void afficherMenu(Joueur joueurs[],int j) {
 
     } while (choix < 1 || choix > 5);  // Répète tant que l'entrée est invalide
 
-    // Gestion des choix avec switch-case
-    switch (choix) {
-        case 1:
-            printf("Vous avez choisi : Lancer une nouvelle partie\n");
-            // Appeler ici la fonction qui démarre une nouvelle partie
-            // Appel de la fonction configurerJoueurs avec les parametres requis
-            configurerJoueurs(joueurs, &j);
-            break;
-        case 2:
-            printf("Vous avez choisi : Reprendre une partie sauvegardée\n");
-            // Appeler ici la fonction qui charge une partie sauvegardee
-            break;
-        case 3:
-            printf("Vous avez choisi : Afficher l'aide\n");
-            AfficherAide();
-            break;
-        case 4:
-            printf("Vous avez choisi : Afficher les scores des joueurs\n");
-            // Appeler ici la fonction qui affiche les scores
-            break;
-        case 5:
-            printf("Vous avez choisi : Quitter le jeu\n");
-            break;
-        default:
-            printf("Erreur: Choix non reconnu.\n");
-            break;
-    }
+
+    return choix;
 }
 
 
@@ -218,9 +192,9 @@ void AfficherAide(){
     printf("- Chaque joueur est soit humain soit une IA, a choisir avant de lancer la partie.\n"
            "- Plateau de 9 cases par ligne et 9 cases par colonne. Entre les lignes et entre les colonnes il y"
            " a un emplacement prevu pour planter les murs du corridor (ou Quoridor) !\n"
-           "- 20 barrieres ( (10 barrieres par joueur pour 2 joueurs ou 5 barrieres pour 4 joueurs).\n"
+           "- 20 barrieres  (10 barrieres par joueur pour 2 joueurs ou 5 barrieres pour 4 joueurs).\n"
            "- Chaque barriere a une longueur de 2 cases et se positionnera entre deux lignes ou deux\n"
            "colonnes.\n"
-           "- 1 zone de stockage par joueur des barrieres en début de partie (inventaire)\n"
-           "- Un pion par joueur avec un jeton a choisir parmi un caractere de son choix");
+           "- 1 zone de stockage par joueur des barrieres en debut de partie (inventaire)\n"
+           "- Un pion par joueur avec un jeton a choisir parmi un caractere de son choix.");
 }
