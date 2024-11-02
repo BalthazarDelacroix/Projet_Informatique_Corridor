@@ -8,7 +8,7 @@
 
 
 // Fonction pour afficher le menu et gérer les choix
-int afficherMenu(Joueur joueurs[],int j) {
+int afficherMenu() {
     int choix;
     char buffer[10]; // Utilisation d'un buffer pour capturer l'entrée
 

@@ -36,10 +36,14 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
             printf("3. Annuler une action\n");
             printf("4. Placer un mur\n");
             printf("Votre choix (1-4) : ");
-            scanf("%d", &choix);
 
-            // Vérification que le choix est bien entre 1 et 4
-            if (choix < 1 || choix > 4) {
+
+            // Vérifie que la saisie est un entier et entre 1 et 4
+            if (scanf("%d", &choix) != 1) {
+                printf("Choix invalide.\n");
+                while (getchar() != '\n'); // Vider le buffer
+                choix = -1; // Valeur invalide pour relancer la boucle
+            } else if (choix < 1 || choix > 4) {
                 printf("Choix invalide.\n");
             }
         } while (choix < 1 || choix > 4 || (choix == 4 && joueurActuel->nombreBarrieres == 0));
@@ -55,11 +59,12 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
                            "(s = Bas)\n"
                            "(q = Gauche)\n"
                            "(d = Droite)\n");
-                    scanf(" %c", &direction);
-                    if (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd') {
+                    if (scanf(" %c", &direction) != 1 ||
+                     (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd')) {
                         printf("Entrée invalide. Veuillez entrer une seule direction valide.\n");
-
-                    }
+                        while (getchar() != '\n'); // Vider le buffer
+                        direction = '\0'; // Valeur invalide pour relancer la boucle
+        }
                 }while (direction != 'z' && direction != 's' && direction != 'q' && direction != 'd');
                 switch (direction){
                     case 'z':
@@ -67,15 +72,21 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
                             printf("Vous ne pouvez pas aller plus haut.");
                         }
                         else {
-                            joueurActuel->x++;
+                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
+                            joueurActuel->x--;
+
+
+
                         }
-                        break;
+
                     case 's':
                         if (joueurActuel->x == TAILLE-1) {
                             printf("Vous ne pouvez pas aller plus bas");
                         }
                         else {
-                            joueurActuel->x--;
+                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
+                            joueurActuel->x++;
+
                         }
                         break;
                     case 'q':
@@ -83,18 +94,25 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
                             printf("Vous ne pouvez pas aller plus a gauche");
                         }
                         else {
+                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
                             joueurActuel->y--;
+
                         }
                         break;
                     case 'd':
-                        if (joueurActuel->x == TAILLE-1) {
+                        if (joueurActuel->y == TAILLE-1) {
                             printf("Vous ne pouvez pas aller plus a droite");
                         }
                         else {
-                            joueurActuel->x++;
+                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
+                            joueurActuel->y++;
+
                         }
                         break;
+
                 }
+                // Mettre à jour le plateau avec la nouvelle position du joueur
+                plateau[joueurActuel->x][joueurActuel->y] = joueurActuel->pion;
                 break;
             }
             case 2:
@@ -108,9 +126,8 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
 
                     if (joueurActuel->nombreBarrieres > 0) {
                         printf("%s choisit de placer un mur.\n", joueurActuel->nom);
-                        placerMur(plateau, joueurActuel);
+                        placerMur(plateau, joueurActuel,nombreJoueurs);
                         joueurActuel->nombreBarrieres--;
-                        afficherPlateau(plateau);
                         // Logique pour placer un mur ici
                     } else {
                         printf("%s ne possede plus de barrieres disponibles !\n", joueurActuel->nom);
@@ -126,5 +143,8 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
         // Marquer ce joueur comme ayant joué
         dejaJoue[indexJoueur] = 1;
         joueursRestants--;
+        // Afficher le plateau après déplacement
+        afficherPlateau(plateau);
+
     }
 }

@@ -12,7 +12,7 @@ int main() {
     Joueur joueurs[MAX_JOUEURS];
     int a;
     do {
-        a= afficherMenu(joueurs,j);
+        a= afficherMenu();
         switch (a) {
             case 1:
                 printf("Vous avez choisi : Lancer une nouvelle partie\n");
