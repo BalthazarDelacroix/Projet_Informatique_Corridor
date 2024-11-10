@@ -6,7 +6,7 @@
 
 int main() {
     int j =saisirNombreDeJoueurs();
-    char plateau[TAILLE][TAILLE];
+    char plateau[2*TAILLE-1][2*TAILLE-1];
     // Initialisation du plateau
     initPlateau(plateau);
     Joueur joueurs[MAX_JOUEURS];
@@ -67,13 +67,7 @@ int main() {
 
         }
     }while(a!=5);
-
-
-
-
         printf("Merci d'avoir joue !\n");
         sleep(3);
-
         return 0;
-
 }

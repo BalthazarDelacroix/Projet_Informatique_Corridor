@@ -2,19 +2,25 @@
 
 
 // Fonction pour initialiser le plateau (9x9)
-void initPlateau(char plateau[TAILLE][TAILLE]) {
-    for (int i = 0; i < TAILLE; i++) {
-        for (int j = 0; j < TAILLE; j++) {
-            plateau[i][j] = VIDE;  // Chaque case est initialisée avec un point
+void initPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
+    for (int i = 0; i < 2*TAILLE-1; i++) {
+        for (int j = 0; j < 2*TAILLE-1; j++) {
+            if (i%2==0||j%2==0)
+            {
+                plateau[i][j] = VIDE;
+            } // Chaque case est initialisée avec un point
+            else{
+                plateau[i][j]=' ';
+            }
         }
     }
 }
 
 // Fonction pour afficher le plateau
-void afficherPlateau(char plateau[TAILLE][TAILLE]) {
+void afficherPlateau(char plateau[2*TAILLE-1][2*TAILLE-1]) {
     printf("\n");
-    for (int i = 0; i < TAILLE; i++) {
-        for (int j = 0; j < TAILLE; j++) {
+    for (int i = 0; i < 2*TAILLE-1; i++) {
+        for (int j = 0; j < 2*TAILLE-1; j++) {
             printf("%c ", plateau[i][j]);  // Affiche chaque case du plateau
         }
         printf("\n");
@@ -26,7 +32,7 @@ void afficherPlateau(char plateau[TAILLE][TAILLE]) {
 // typeMur : 'v' pour mur vertical, 'h' pour mur horizontal
 
 
-void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nombreDeJoueurs) {
+void placerMur(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int nombreDeJoueurs) {
     int x, y;
     char typeMur;
     int erreur;
@@ -43,11 +49,11 @@ void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nombreDeJoueu
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
-        else if (x < 0 || x >= TAILLE || y < 0 || y >= TAILLE || (typeMur != 'v' && typeMur != 'h')) {
+        else if (x < 0 || x >= 2*TAILLE-1 || y < 0 || y >= 2*TAILLE-1 || (typeMur != 'v' && typeMur != 'h')) {
             printf("Coordonnees ou position non valides.\n");
             erreur = 1;
         }
-        else if ((typeMur == 'h' && y >= TAILLE - 1) || (typeMur == 'v' && x >= TAILLE - 1)) {
+        else if ((typeMur == 'h' && y >= 2*TAILLE-1 - 1) || (typeMur == 'v' && x >= 2*TAILLE-1 - 1)) {
             printf("Emplacement hors plateau pour un mur de type %c.\n", typeMur);
             erreur = 1;
         }
@@ -86,28 +92,28 @@ void placerMur(char plateau[TAILLE][TAILLE], Joueur joueurs[], int nombreDeJoueu
 
 
 
-void placerPionsSurPlateau(char plateau[TAILLE][TAILLE], Joueur joueurs[], int *nbJoueurs) {
+void placerPionsSurPlateau(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[], int *nbJoueurs) {
     if (*nbJoueurs == 2) {
         // Placer les pions pour 2 joueurs au milieu des colonnes extrêmes
-        plateau[TAILLE / 2][0] = joueurs[0].pion;           // Milieu de la première colonne
-        plateau[TAILLE / 2][TAILLE - 1] = joueurs[1].pion; // Milieu de la dernière colonne
-        joueurs[0].x =TAILLE / 2 ;
+        plateau[2*TAILLE-1 / 2][0] = joueurs[0].pion;           // Milieu de la première colonne
+        plateau[2*TAILLE-1 / 2][2*TAILLE-1 - 1] = joueurs[1].pion; // Milieu de la dernière colonne
+        joueurs[0].x =2*TAILLE-1 / 2 ;
         joueurs[0].y =0;
-        joueurs[1].x = TAILLE / 2;
-        joueurs[1].y =TAILLE-1;
+        joueurs[1].x = 2*TAILLE-1 / 2;
+        joueurs[1].y =2*TAILLE-1-1;
     } else if (*nbJoueurs == 4) {
         // Placer les pions pour 4 joueurs aux quatre coins du plateau
         plateau[0][0] = joueurs[0].pion;                     // Coin supérieur gauche
-        plateau[0][TAILLE - 1] = joueurs[1].pion;            // Coin supérieur droit
-        plateau[TAILLE - 1][0] = joueurs[2].pion;            // Coin inférieur gauche
-        plateau[TAILLE - 1][TAILLE - 1] = joueurs[3].pion;   // Coin inférieur droit
+        plateau[0][2*TAILLE-1 - 1] = joueurs[1].pion;            // Coin supérieur droit
+        plateau[2*TAILLE-1 - 1][0] = joueurs[2].pion;            // Coin inférieur gauche
+        plateau[2*TAILLE-1 - 1][2*TAILLE-1 - 1] = joueurs[3].pion;   // Coin inférieur droit
         joueurs[0].x = 0;
         joueurs[0].y =0;
         joueurs[1].x = 0;
-        joueurs[1].y =TAILLE-1;
-        joueurs[2].x = TAILLE -1;
+        joueurs[1].y =2*TAILLE-1-1;
+        joueurs[2].x = 2*TAILLE-1 -1;
         joueurs[2].y =0;
-        joueurs[3].x = TAILLE -1;
-        joueurs[3].y =TAILLE - 1;
+        joueurs[3].x = 2*TAILLE-1 -1;
+        joueurs[3].y =2*TAILLE-1 - 1;
     }
 }
