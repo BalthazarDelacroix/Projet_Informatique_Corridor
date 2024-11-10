@@ -18,7 +18,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
     int joueursRestants = nombreJoueurs;
 
-    while (joueursRestants > 0) {
+    while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)) {
         // Choisir un joueur aléatoirement qui n'a pas encore joué
         int indexJoueur;
         do {

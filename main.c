@@ -28,33 +28,43 @@ int main() {
 
 
                 int tour = 1;
+                int termine;
                 // Boucle principale du jeu qui permet plusieurs tours
                 do {
+                    termine = 0;
                     printf("\n----- Tour %d -----\n", tour);
                     // Appel de la fonction pour gérer le tour de chaque joueur
                     jouerTour(joueurs, j, plateau);
                     if ((j==2 &&(joueurs[0].y == 16 || joueurs[1].y == 0)) || (j==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0))) {
                         if (joueurs[0].y == 16) {
-                            printf("%s a gagne la partie",joueurs[0].nom);
+                            printf("%s a gagne la partie \n",joueurs[0].nom);
                             joueurs[0].score += 5;
+                            printf("%s a %d points \n",joueurs[0].nom,joueurs[0].score);
+                            termine = 1;
                         }
                         else if (joueurs[1].y == 0) {
-                            printf("%s a gagne la partie",joueurs[1].nom);
+                            printf("%s a gagne la partie \n",joueurs[1].nom);
                             joueurs[1].score += 5;
+                            printf("%s a %d points \n",joueurs[1].nom,joueurs[1].score);
+                            termine = 1;
                         }
                         else if (joueurs[2].x == 16) {
-                            printf("%s a gagne la partie",joueurs[2].nom);
+                            printf("%s a gagne la partie \n",joueurs[2].nom);
                             joueurs[2].score += 5;
+                            printf("%s a %d points \n",joueurs[2].nom,joueurs[2].score);
+                            termine = 1;
                         }
                         else if (joueurs[3].x == 16) {
-                            printf("%s a gagne la partie",joueurs[3].nom);
+                            printf("%s a gagne la partie \n",joueurs[3].nom);
                             joueurs[3].score += 5;
+                            printf("%s a %d points \n",joueurs[3].nom,joueurs[3].score);
+                            termine = 1;
                         }
                     }
                     tour ++;
 
 
-                }while((j==2 &&(joueurs[0].y != 16 || joueurs[1].y != 0)) || (j==4 &&(joueurs[0].y != 16 || joueurs[1].y != 0 || joueurs[2].x !=16 || joueurs[3].x !=0)));
+                }while(termine == 0);
                 sleep(1);
                 break;
             case 2:
