@@ -27,22 +27,34 @@ int main() {
                 srand(time(NULL)); // Initialisation du générateur aléatoire
 
 
-                int continuer = 1;
                 int tour = 1;
                 // Boucle principale du jeu qui permet plusieurs tours
-                while (continuer) {
+                do {
                     printf("\n----- Tour %d -----\n", tour);
                     // Appel de la fonction pour gérer le tour de chaque joueur
                     jouerTour(joueurs, j, plateau);
+                    if ((j==2 &&(joueurs[0].y == 16 || joueurs[1].y == 0)) || (j==4 &&(joueurs[0].y == 16 || joueurs[1].y == 0 || joueurs[2].x ==16 || joueurs[3].x ==0))) {
+                        if (joueurs[0].y == 16) {
+                            printf("%s a gagne la partie",joueurs[0].nom);
+                            joueurs[0].score += 5;
+                        }
+                        else if (joueurs[1].y == 0) {
+                            printf("%s a gagne la partie",joueurs[1].nom);
+                            joueurs[1].score += 5;
+                        }
+                        else if (joueurs[2].x == 16) {
+                            printf("%s a gagne la partie",joueurs[2].nom);
+                            joueurs[2].score += 5;
+                        }
+                        else if (joueurs[3].x == 16) {
+                            printf("%s a gagne la partie",joueurs[3].nom);
+                            joueurs[3].score += 5;
+                        }
+                    }
+                    tour ++;
 
-                    // Demander si l'utilisateur souhaite continuer un nouveau tour
-                    printf("\nVoulez-vous commencer un nouveau tour ? (1: Oui, 0: Non) : ");
-                    scanf("%d", &continuer);
 
-                    if (continuer) {
-                     tour++;  // Incrémenter le numéro du tour
-                }
-            }
+                }while((j==2 &&(joueurs[0].y != 16 || joueurs[1].y != 0)) || (j==4 &&(joueurs[0].y != 16 || joueurs[1].y != 0 || joueurs[2].x !=16 || joueurs[3].x !=0)));
                 sleep(1);
                 break;
             case 2:
