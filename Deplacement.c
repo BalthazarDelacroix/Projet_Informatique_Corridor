@@ -1,3 +1,4 @@
+
 #include "Code Maxence.h"
 #include <time.h>
 #include <stdio.h>
@@ -8,7 +9,7 @@ int nombreAleatoire(int min, int max) {
 }
 
 // Fonction pour appeler un joueur au hasard et lui proposer un menu
-void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]) {
+void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*TAILLE-1]) {
     // Table pour vérifier les joueurs qui ont déjà joué
     int dejaJoue[nombreJoueurs];
     for (int i = 0; i < nombreJoueurs; i++) {
@@ -71,32 +72,32 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[TAILLE][TAILLE]
                         if (joueurActuel->x == 0) {
                             printf("Vous ne pouvez pas aller plus haut.\n");
                         } else {
-                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
-                            joueurActuel->x--;
+                            plateau[joueurActuel->x][joueurActuel->y] = CASE;
+                            joueurActuel->x-=2;
                         }
                         break;
                     case 's':
-                        if (joueurActuel->x == TAILLE - 1) {
+                        if (joueurActuel->x == 2*TAILLE - 2) {
                             printf("Vous ne pouvez pas aller plus bas.\n");
                         } else {
-                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
-                            joueurActuel->x++;
+                            plateau[joueurActuel->x][joueurActuel->y] = CASE;
+                            joueurActuel->x+=2;
                         }
                         break;
                     case 'q':
                         if (joueurActuel->y == 0) {
                             printf("Vous ne pouvez pas aller plus à gauche.\n");
                         } else {
-                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
-                            joueurActuel->y--;
+                            plateau[joueurActuel->x][joueurActuel->y] = CASE;
+                            joueurActuel->y-=2;
                         }
                         break;
                     case 'd':
-                        if (joueurActuel->y == TAILLE - 1) {
+                        if (joueurActuel->y == 2*TAILLE - 2) {
                             printf("Vous ne pouvez pas aller plus à droite.\n");
                         } else {
-                            plateau[joueurActuel->x][joueurActuel->y] = VIDE;
-                            joueurActuel->y++;
+                            plateau[joueurActuel->x][joueurActuel->y] = CASE;
+                            joueurActuel->y+=2;
                         }
                         break;
                 }

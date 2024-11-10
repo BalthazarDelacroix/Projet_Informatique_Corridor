@@ -1,3 +1,4 @@
+
 #ifndef CODE_MAXENCE_H
 #define CODE_MAXENCE_H
 #include <stdio.h>
@@ -7,7 +8,7 @@
 #define TAILLE_NOM 50
 #define TAILLE 9
 #define MUR 'o'  // Représente un mur
-#define VIDE '.'  // Représente une case vide
+#define CASE '.'  // Représente une case vide
 #define MUR_HORIZONTALE '-'
 #define MUR_VERTICALE '|'
 #include <time.h>
