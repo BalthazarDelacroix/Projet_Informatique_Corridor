@@ -17,7 +17,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
     int joueursRestants = nombreJoueurs;
 
-    while (joueursRestants > 0) {
+    while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)){
         // Choisir un joueur aléatoirement qui n'a pas encore joué
         int indexJoueur;
         do {
@@ -82,7 +82,18 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else if (plateau[murX - 1][murY] == MUR_HORIZONTALE) { // Vérifier la présence d'un mur horizontal
                                 printf("Un mur bloque le passage en haut.\n");
                                 deplacementPossible = 0;
-                            } else {
+                            }
+                            else if (plateau[murX-2][murY] != CASE) {
+                                if (plateau[murX-4][murY] == CASE && murX-4 >=0 &&  plateau[murX-3][murY] != MUR_HORIZONTALE) {
+                                    // Vérifier la présence d'un mur vertical
+                                    newX -= 4;
+                                }
+                                else {
+                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    deplacementPossible = 0;
+                                }
+                            }
+                            else {
                                 newX -= 2; // Met à jour la position cible
                             }
                             break;
@@ -93,18 +104,42 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else if (plateau[murX + 1][murY] == MUR_HORIZONTALE) { // Vérifier la présence d'un mur horizontal
                                 printf("Un mur bloque le passage en bas.\n");
                                 deplacementPossible = 0;
-                            } else {
+                            }
+                            else if (plateau[murX+2][murY] != CASE) {
+                                if (plateau[murX+4][murY] == CASE && murX+4 <= 16  &&  plateau[murX+3][murY] != MUR_HORIZONTALE) {
+                                    // Vérifier la présence d'un mur vertical
+                                    newX += 4;
+                                }
+                                else {
+                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    deplacementPossible = 0;
+                                }
+                            }
+                            else {
                                 newX += 2; // Met à jour la position cible
                             }
                             break;
                         case 'q':
                             if (joueurActuel->y == 0) {
-                                printf("Vous ne pouvez pas aller plus à gauche.\n");
+                                printf("Vous ne pouvez pas aller plus a gauche.\n");
                                 deplacementPossible = 0;
                             } else if (plateau[murX][murY - 1] == MUR_VERTICALE) { // Vérifier la présence d'un mur vertical
-                                printf("Un mur bloque le passage à gauche.\n");
+                                printf("Un mur bloque le passage a gauche.\n");
                                 deplacementPossible = 0;
-                            } else {
+
+
+                            }
+                            else if (plateau[murX][murY - 2] != CASE) {
+                                if (plateau[murX][murY - 4] == CASE && murY-4 >= 0  &&  plateau[murX][murY - 3] != MUR_VERTICALE) {
+                                    // Vérifier la présence d'un mur vertical
+                                    newY -= 4;
+                                }
+                                else {
+                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    deplacementPossible = 0;
+                                }
+                            }
+                            else {
                                 newY -= 2; // Met à jour la position cible
                             }
                             break;
@@ -115,14 +150,25 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else if (plateau[murX][murY + 1] == MUR_VERTICALE) { // Vérifier la présence d'un mur vertical
                                 printf("Un mur bloque le passage a droite.\n");
                                 deplacementPossible = 0;
-                            } else {
+                            }
+                            else if (plateau[murX][murY + 2] != CASE) {
+                                if (plateau[murX][murY + 4] == CASE && murY+4 <= 16  &&  plateau[murX][murY + 3] != MUR_VERTICALE) {
+                                    // Vérifier la présence d'un mur vertical
+                                    newY += 4;
+                                }
+                                else {
+                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    deplacementPossible = 0;
+                                }
+                            }
+                            else {
                                 newY += 2; // Met à jour la position cible
                             }
                             break;
                     }
 
                     // Vérifier si un joueur est dans la direction du mouvement et s'il peut être sauté
-                    if (deplacementPossible) {
+                    /*if (deplacementPossible) {
                         for (int i = 0; i < nombreJoueurs; i++) {
                             // Si un autre joueur est directement dans la direction du mouvement
                             if (joueurs[i].x == newX && joueurs[i].y == newY) {
@@ -139,16 +185,16 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                                         joueurActuel->y = sautY;
                                         plateau[sautX][sautY] = joueurActuel->pion;  // Met à jour la nouvelle position
                                         plateau[newX][newY] = CASE;  // Effacer la position du joueur saute
-                                        printf("%s saute %s et va directement derrière lui.\n", joueurActuel->nom, joueurs[i].nom);
+                                        printf("%s saute %s et va directement derriere lui.\n", joueurActuel->nom, joueurs[i].nom);
                                         break;
                                     } else {
-                                        printf("Impossible de sauter : la case est occupée.\n");
+                                        printf("Impossible de sauter : la case est occupee.\n");
                                         deplacementPossible = 0;
                                     }
                                 }
                             }
                         }
-                    }
+                    }*/
 
                     // Déplacer le joueur si le déplacement est possible
                     if (deplacementPossible) {
