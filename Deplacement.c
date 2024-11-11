@@ -89,7 +89,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                                     newX -= 4;
                                 }
                                 else {
-                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    printf("Deplacement impossible. Vous devez bifurquer \n");
                                     deplacementPossible = 0;
                                 }
                             }
@@ -111,7 +111,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                                     newX += 4;
                                 }
                                 else {
-                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    printf("Deplacement impossible. Vous devez bifurquer \n");
                                     deplacementPossible = 0;
                                 }
                             }
@@ -135,7 +135,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                                     newY -= 4;
                                 }
                                 else {
-                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    printf("Deplacement impossible. Vous devez bifurquer \n");
                                     deplacementPossible = 0;
                                 }
                             }
@@ -157,7 +157,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                                     newY += 4;
                                 }
                                 else {
-                                    printf("Deplacement impossible. Vous pouvez bifurquer \n");
+                                    printf("Deplacement impossible. Vous devez bifurquer \n");
                                     deplacementPossible = 0;
                                 }
                             }

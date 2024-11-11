@@ -7,7 +7,6 @@
 #define MAX_JOUEURS 4
 #define TAILLE_NOM 50
 #define TAILLE 9
-#define MUR 'o'  // Représente un mur
 #define CASE '.'  // Représente une case vide
 #define MUR_HORIZONTALE '-'
 #define MUR_VERTICALE '|'
