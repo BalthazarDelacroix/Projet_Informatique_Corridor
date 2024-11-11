@@ -1,4 +1,3 @@
-
 #include "Code Maxence.h"
 #include <time.h>
 #include <stdio.h>
@@ -18,7 +17,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
     int joueursRestants = nombreJoueurs;
 
-    while (joueursRestants > 0 && (joueurs[0].y != 16 && joueurs[1].y != 0 && joueurs[2].x !=16 && joueurs[3].x !=0)) {
+    while (joueursRestants > 0) {
         // Choisir un joueur aléatoirement qui n'a pas encore joué
         int indexJoueur;
         do {
@@ -65,7 +64,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                         printf("Entree invalide. Veuillez entrer une seule direction valide.\n");
                         while (getchar() != '\n'); // Vider le buffer
                         direction = '\0'; // Valeur invalide pour relancer la boucle
-                        }
+                    }
 
 
                     // Calculer la position cible et vérifier s'il y a un mur bloquant
@@ -86,7 +85,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else {
                                 newX -= 2; // Met à jour la position cible
                             }
-                        break;
+                            break;
                         case 's':
                             if (joueurActuel->x == 2*TAILLE - 2) {
                                 printf("Vous ne pouvez pas aller plus bas.\n");
@@ -97,7 +96,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else {
                                 newX += 2; // Met à jour la position cible
                             }
-                        break;
+                            break;
                         case 'q':
                             if (joueurActuel->y == 0) {
                                 printf("Vous ne pouvez pas aller plus à gauche.\n");
@@ -108,7 +107,7 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else {
                                 newY -= 2; // Met à jour la position cible
                             }
-                        break;
+                            break;
                         case 'd':
                             if (joueurActuel->y == 2*TAILLE - 2) {
                                 printf("Vous ne pouvez pas aller plus a droite.\n");
@@ -119,7 +118,36 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
                             } else {
                                 newY += 2; // Met à jour la position cible
                             }
-                        break;
+                            break;
+                    }
+
+                    // Vérifier si un joueur est dans la direction du mouvement et s'il peut être sauté
+                    if (deplacementPossible) {
+                        for (int i = 0; i < nombreJoueurs; i++) {
+                            // Si un autre joueur est directement dans la direction du mouvement
+                            if (joueurs[i].x == newX && joueurs[i].y == newY) {
+                                // Calculer la position derrière ce joueur (sauter par-dessus)
+                                int sautX = newX + (newX - joueurActuel->x);  // Deux cases derrière
+                                int sautY = newY + (newY - joueurActuel->y);  // Deux cases derrière
+
+                                // Vérifier si le saut est valide
+                                if (sautX >= 0 && sautX < 2 * TAILLE - 1 && sautY >= 0 && sautY < 2 * TAILLE - 1) {
+                                    if (plateau[sautX][sautY] == CASE) {
+                                        // Effectuer le saut
+                                        plateau[joueurActuel->x][joueurActuel->y] = CASE;  // Effacer la position d'origine
+                                        joueurActuel->x = sautX;
+                                        joueurActuel->y = sautY;
+                                        plateau[sautX][sautY] = joueurActuel->pion;  // Met à jour la nouvelle position
+                                        plateau[newX][newY] = CASE;  // Effacer la position du joueur saute
+                                        printf("%s saute %s et va directement derrière lui.\n", joueurActuel->nom, joueurs[i].nom);
+                                        break;
+                                    } else {
+                                        printf("Impossible de sauter : la case est occupée.\n");
+                                        deplacementPossible = 0;
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     // Déplacer le joueur si le déplacement est possible
@@ -136,19 +164,19 @@ void jouerTour(Joueur joueurs[], int nombreJoueurs, char plateau[2*TAILLE-1][2*T
 
             case 2:
                 printf("%s choisit de passer son tour.\n", joueurActuel->nom);
-            break;
+                break;
             case 3:
                 printf("%s veut annuler une action.\n", joueurActuel->nom);
-            // Logique pour annuler une action ici
-            break;
+                // Logique pour annuler une action ici
+                break;
             case 4:
                 printf("%s choisit de placer un mur.\n", joueurActuel->nom);
-            placerMur(plateau, joueurs, nombreJoueurs);  // Corrigé
-            joueurActuel->nombreBarrieres--;
-            break;
+                placerMur(plateau, joueurs, nombreJoueurs);  // Corrigé
+                joueurActuel->nombreBarrieres--;
+                break;
             default:
                 printf("Erreur inattendue.\n");
-            break;
+                break;
         }
 
         // Marquer ce joueur comme ayant joué
