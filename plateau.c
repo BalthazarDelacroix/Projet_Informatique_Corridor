@@ -99,17 +99,17 @@ void placerPionsSurPlateau(char plateau[2*TAILLE-1][2*TAILLE-1], Joueur joueurs[
         joueurs[1].y =16;
     } else if (*nbJoueurs == 4) {
         // Placer les pions pour 4 joueurs aux quatre coins du plateau
-        plateau[0][0] = joueurs[0].pion;                     // Coin supérieur gauche
-        plateau[0][2*TAILLE-2] = joueurs[1].pion;            // Coin supérieur droit
-        plateau[2*TAILLE-2][0] = joueurs[2].pion;            // Coin inférieur gauche
-        plateau[2*TAILLE-2][2*TAILLE-2] = joueurs[3].pion;   // Coin inférieur droit
-        joueurs[0].x = 0;
+        plateau[8][0] = joueurs[0].pion;           // Milieu de la première colonne
+        plateau[8][16] = joueurs[1].pion; // Milieu de la dernière colonne
+        plateau[0][8] = joueurs[2].pion;            // Coin inférieur gauche
+        plateau[16][8] = joueurs[3].pion;   // Coin inférieur droit
+        joueurs[0].x =8 ;
         joueurs[0].y =0;
-        joueurs[1].x = 0;
-        joueurs[1].y =2*TAILLE-1-1;
-        joueurs[2].x = 2*TAILLE-1 -1;
-        joueurs[2].y =0;
-        joueurs[3].x = 2*TAILLE-1 -1;
-        joueurs[3].y =2*TAILLE-1 - 1;
+        joueurs[1].x = 8;
+        joueurs[1].y =16;
+        joueurs[2].x = 0;
+        joueurs[2].y =8;
+        joueurs[3].x = 16;
+        joueurs[3].y =8;
     }
 }
