@@ -1,4 +1,4 @@
-#include "Code Maxence.h"
+#include "header.h"
 
 
 // Fonction pour initialiser le plateau (9x9)
