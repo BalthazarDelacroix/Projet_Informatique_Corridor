@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <windows.h>
-//qtructure joueur
+//structure joueur
 typedef struct {
     char nom[TAILLE_NOM]; // Nom du joueur
     unsigned char pion;            // Pion du joueur
